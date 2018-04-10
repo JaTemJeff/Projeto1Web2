@@ -5,7 +5,7 @@
   <artifactId>servlet-upload01</artifactId>
   <packaging>war</packaging>
   <version>0.1</version>
-  <name>servlet-upload01</name>
+  <name>Projeto01Web2</name>
   <url>http://maven.apache.org</url>
   <dependencies>
       <dependency>
