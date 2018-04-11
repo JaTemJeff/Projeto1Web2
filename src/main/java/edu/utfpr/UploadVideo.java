@@ -35,11 +35,11 @@ public class UploadVideo extends HttpServlet {
         writer.println("<html>");
         writer.println("    <head>");
         writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
-        writer.println("        <title>Servlet01</title>");
+        writer.println("        <title>Upload de Vídeo</title>");
         writer.println("    </head>");
         writer.println("    <body>");
-        writer.println("        <h1>Exemplos upload com servlet</h1>");
-        writer.println("        <form action=\"01\" method=\"POST\"");
+        writer.println("        <h1>Enviar vídeos: (.mp4)</h1>");
+        writer.println("        <form action=\"UploadVideo\" method=\"POST\"");
         writer.println("                          accept-charset=\"utf-8\"");
         writer.println("                          enctype=\"multipart/form-data\">");
         writer.println("            <input type=\"file\" name=\"arquivo\" value=\"\" />");
@@ -48,7 +48,7 @@ public class UploadVideo extends HttpServlet {
         writer.println("<ul>");
         for (int i = 0; i < this.id; i++) {
             writer.println("<li>"+
-            "<video width=\"320\" height=\"240\" controls>"+
+            "<video width=\"160\" height=\"120\" controls>"+
                 "<source src=\"uploads/" + i + ".mp4\" type=\"video/mp4\">"+
             "</video></li>");
         }
@@ -67,7 +67,7 @@ public class UploadVideo extends HttpServlet {
             Files.copy(in, Paths.get(videos_path + "/" + this.id++ + ".mp4"), StandardCopyOption.REPLACE_EXISTING);
         }
         part.delete();
-        res.sendRedirect("01");
+        res.sendRedirect("UploadVideo");
    }
 
 }
