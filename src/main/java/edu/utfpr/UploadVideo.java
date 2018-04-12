@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-@WebServlet(urlPatterns="/UploadVideo")
+@WebServlet(urlPatterns="/uploadvideo")
 @MultipartConfig(fileSizeThreshold=1024*1024*2,
                  maxFileSize=1024*1024*50,
                  maxRequestSize=1024*1024*100)
@@ -26,6 +26,7 @@ public class UploadVideo extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private int id = 0;
+    private String path;
 
     public void doGet (HttpServletRequest req,
                        HttpServletResponse res) throws IOException {
@@ -39,7 +40,7 @@ public class UploadVideo extends HttpServlet {
         writer.println("    </head>");
         writer.println("    <body>");
         writer.println("        <h1>Enviar vídeos: (.mp4)</h1>");
-        writer.println("        <form action=\"UploadVideo\" method=\"POST\"");
+        writer.println("        <form action=\"uploadvideo\" method=\"POST\"");
         writer.println("                          accept-charset=\"utf-8\"");
         writer.println("                          enctype=\"multipart/form-data\">");
         writer.println("            <input type=\"file\" name=\"arquivo\" value=\"\" />");
@@ -61,7 +62,7 @@ public class UploadVideo extends HttpServlet {
                         HttpServletResponse res) throws IOException, ServletException {
         Part part = req.getPart("arquivo");
         String nomeArquivos = part.getSubmittedFileName();
-        String videos_path = req.getServletContext().getRealPath("/uploads");
+        String videos_path = req.getServletContext().getRealPath("");
         String[] newpath = videos_path.split("\\\\");
         StringBuilder str = new StringBuilder();
         for(String i : newpath){
@@ -71,12 +72,13 @@ public class UploadVideo extends HttpServlet {
             str.append(i+"/");
         }
         str.append("uploads/");
+        path = str.toString();
         InputStream in = part.getInputStream();
         if (part.getContentType().equals("video/mp4")) {
             Files.copy(in, Paths.get(str.toString() + nomeArquivos), StandardCopyOption.REPLACE_EXISTING);
         }
         part.delete();
-        res.sendRedirect("UploadVideo");
+        res.sendRedirect("uploadvideo");
    }
 
 }
