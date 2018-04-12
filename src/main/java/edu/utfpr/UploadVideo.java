@@ -60,11 +60,20 @@ public class UploadVideo extends HttpServlet {
     public void doPost (HttpServletRequest req,
                         HttpServletResponse res) throws IOException, ServletException {
         Part part = req.getPart("arquivo");
+        String nomeArquivos = part.getSubmittedFileName();
         String videos_path = req.getServletContext().getRealPath("/uploads");
-        System.out.println(videos_path);
+        String[] newpath = videos_path.split("\\\\");
+        StringBuilder str = new StringBuilder();
+        for(String i : newpath){
+            if (i.equals("target")){
+                break;
+            }
+            str.append(i+"/");
+        }
+        str.append("uploads/");
         InputStream in = part.getInputStream();
         if (part.getContentType().equals("video/mp4")) {
-            Files.copy(in, Paths.get(videos_path + "/" + this.id++ + ".mp4"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(in, Paths.get(str.toString() + nomeArquivos), StandardCopyOption.REPLACE_EXISTING);
         }
         part.delete();
         res.sendRedirect("UploadVideo");
