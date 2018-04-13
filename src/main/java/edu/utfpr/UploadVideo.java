@@ -1,4 +1,4 @@
-package edu.utfpr;
+ package edu.utfpr;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,6 +27,7 @@ public class UploadVideo extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private int id = 0;
     private String path;
+    private String nome_video; 
 
     public void doGet (HttpServletRequest req,
                        HttpServletResponse res) throws IOException {
@@ -61,7 +62,7 @@ public class UploadVideo extends HttpServlet {
     public void doPost (HttpServletRequest req,
                         HttpServletResponse res) throws IOException, ServletException {
         Part part = req.getPart("arquivo");
-        String nomeArquivos = part.getSubmittedFileName();
+        nome_video = part.getSubmittedFileName();
         String videos_path = req.getServletContext().getRealPath("");
         String[] newpath = videos_path.split("\\\\");
         StringBuilder str = new StringBuilder();
@@ -75,7 +76,7 @@ public class UploadVideo extends HttpServlet {
         path = str.toString();
         InputStream in = part.getInputStream();
         if (part.getContentType().equals("video/mp4")) {
-            Files.copy(in, Paths.get(str.toString() + nomeArquivos), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
         }
         part.delete();
         res.sendRedirect("uploadvideo");
