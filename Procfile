@@ -1,1 +1,1 @@
-web: java -jar target/servlet-upload01-0.1.jar
+web: java $JAVA_OPTS -jar jetty-runner.jar --port $PORT web.war
