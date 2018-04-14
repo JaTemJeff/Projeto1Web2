@@ -37,10 +37,10 @@ public class UploadVideo extends HttpServlet {
         writer.println("<html>");
         writer.println("    <head>");
         writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
-        writer.println("        <title>Upload de Vídeo</title>");
+        writer.println("        <title>Upload de Vï¿½deo</title>");
         writer.println("    </head>");
         writer.println("    <body>");
-        writer.println("        <h1>Enviar vídeos: (.mp4)</h1>");
+        writer.println("        <h1>Enviar vï¿½deos: (.mp4)</h1>");
         writer.println("        <form action=\"uploadvideo\" method=\"POST\"");
         writer.println("                          accept-charset=\"utf-8\"");
         writer.println("                          enctype=\"multipart/form-data\">");
@@ -74,6 +74,7 @@ public class UploadVideo extends HttpServlet {
         }
         str.append("uploads/");
         path = str.toString();
+        System.out.println(path);
         InputStream in = part.getInputStream();
         if (part.getContentType().equals("video/mp4")) {
             Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
