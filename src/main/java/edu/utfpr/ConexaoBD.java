@@ -25,9 +25,12 @@ public class ConexaoBD {
         try {
             dbUri = new URI(System.getenv("DATABASE_URL"));
             String username = dbUri.getUserInfo().split(":")[0];
-                    String password = dbUri.getUserInfo().split(":")[1];
-                    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() +
+            System.out.println(username);
+            String password = dbUri.getUserInfo().split(":")[1];
+            System.out.println(password);
+            String dbUrl = "jdbc:postgresql://" + dbUri.getHost() +
                                   ':' + dbUri.getPort() + dbUri.getPath();
+            System.out.println(dbUrl);
             Class.forName(driver);
             this.con = DriverManager.getConnection(dbUrl, username, password);
         } catch (URISyntaxException ex) {
