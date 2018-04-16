@@ -51,6 +51,7 @@ public class login extends HttpServlet {
             req.getSession().setAttribute("logado", new Boolean(true));
             req.getSession().setAttribute("usuario", "admin");
             res.getWriter().println("<h1>...</h1>");
+            ConexaoBD conexaoBD = new ConexaoBD();
             res.sendRedirect("uploadvideo");
         } else {
             res.setStatus(HttpServletResponse.SC_FORBIDDEN);
