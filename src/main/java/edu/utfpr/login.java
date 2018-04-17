@@ -33,12 +33,9 @@ public class login extends HttpServlet {
         writer.println("    <body>");
         writer.println("        <h1>Login</h1>");
         writer.println("        <form action=\"login\" method=\"POST\">");
-        writer.println("        <fieldset>");
-        writer.println("            <legend>Login</legend>");
         writer.println("            <input type=\"text\" name=\"usuario\" value=\"\">");
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\">");
         writer.println("            <input type=\"submit\" value=\"logar\">");
-        writer.println("        </fieldset>");
         writer.println("        </form>");
         writer.println("    </body>");
         writer.println("</html>");
@@ -55,7 +52,10 @@ public class login extends HttpServlet {
             res.sendRedirect("uploadvideo");
         } else {
             res.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            res.getWriter().println("<h1>You shall not pass!!!</h1>");
+            res.getWriter().println("<h1>Login errado!!!</h1>");
+            res.getWriter().println("        <form action=\"login\" method=\"GET\">");
+            res.getWriter().println("            <input type=\"submit\" value=\"Voltar\">");
+            res.getWriter().println("        </form>");
         }
     }
 }
