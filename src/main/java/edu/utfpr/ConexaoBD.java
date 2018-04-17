@@ -56,4 +56,17 @@ public class ConexaoBD {
             Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void salvarVideo(String nome){
+        getConnection();
+        String sql = "insert into Video (titulo) values (?);";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, nome);
+            st.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }
