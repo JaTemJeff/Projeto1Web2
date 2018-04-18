@@ -28,6 +28,8 @@ public class login extends HttpServlet {
         PrintWriter writer = res.getWriter();
         if (req.getSession().getAttribute("cadastro") != null){
             writer.println("        <h1>"+req.getSession().getAttribute("mensagem")+"</h1>");
+            req.getSession().removeAttribute("cadastro");
+            req.getSession().removeAttribute("mensagem");
         }
         writer.println("<!DOCTYPE HTML>");
         writer.println("<html>");
@@ -39,15 +41,12 @@ public class login extends HttpServlet {
         writer.println("    <body>");
         writer.println("        <h1>Login</h1>");
         writer.println("        <form action=\"login\" method=\"POST\">");
-        writer.println("            <input type=\"text\" name=\"usuario\" value=\"\">");
-        writer.println("            <input type=\"password\" name=\"senha\" value=\"\">");
+        writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
+        writer.println("            <input type=\"password\" name=\"senha\" value=\"\" required>");
         writer.println("            <input type=\"submit\" value=\"logar\">");
         writer.println("        </form>");
-        writer.println("        <h1>Cadastro</h1>");
         writer.println("        <form action=\"cadastro\" method=\"POST\">");
-        writer.println("            <input type=\"text\" name=\"usuario\" value=\"\">");
-        writer.println("            <input type=\"password\" name=\"senha\" value=\"\">");
-        writer.println("            <input type=\"submit\" value=\"cadastrar\">");
+        writer.println("            <input type=\"submit\" value=\"Cadastro\">");
         writer.println("        </form>");
         writer.println("    </body>");
         writer.println("</html>");
@@ -65,11 +64,7 @@ public class login extends HttpServlet {
             req.getSession().setAttribute("mensagem", "Logado com sucesso");
             res.sendRedirect("uploadvideo");
         } catch (Exception ex) {
-            res.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            res.getWriter().println("<h1>Login errado!!!</h1>");
-            res.getWriter().println("        <form action=\"login\" method=\"GET\">");
-            res.getWriter().println("            <input type=\"submit\" value=\"Voltar\">");
-            res.getWriter().println("        </form>");
+            res.getWriter().println("<script>alert(\"Usuario nao encontrado\");</script>");
         }
     }
 }

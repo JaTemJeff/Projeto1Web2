@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.postgresql.util.PSQLException;
 
 public class UsuarioDAO {
     private ConexaoBD bd;
@@ -13,7 +14,7 @@ public class UsuarioDAO {
     public UsuarioDAO() {
         bd = new ConexaoBD();
     }
-    public void salvaUsuario (Usuario u) throws SQLException {
+    public void salvaUsuario (Usuario u) throws PSQLException{
         try {
             con = bd.getConnection();
             PreparedStatement st = st = con.prepareStatement("INSERT INTO Usuario (nome, senha) " +"VALUES (?, ?);");
