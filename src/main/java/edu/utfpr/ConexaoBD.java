@@ -50,6 +50,10 @@ public class ConexaoBD {
                     "CREATE TABLE IF NOT EXISTS Video (" +
                             "id SERIAL PRIMARY KEY," +
                             "titulo VARCHAR(255)" +
+                            ");" +
+                    "CREATE TABLE IF NOT EXISTS Usuario("+
+                            "nome VARCHAR (100), "+
+                            "senha VARCHAR (100)"+
                             ");");
             st.execute();
         } catch (SQLException ex) {

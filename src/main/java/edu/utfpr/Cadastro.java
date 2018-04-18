@@ -5,12 +5,8 @@
  */
 package edu.utfpr;
 
-import edu.utfpr.entidadesedao.Usuario;
-import edu.utfpr.entidadesedao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Aluno
  */
-@WebServlet(name = "login", urlPatterns = {"/login"})
-public class login extends HttpServlet {
+@WebServlet(name = "Cadastro", urlPatterns = {"/Cadastro"})
+public class Cadastro extends HttpServlet {
+
     public void doGet (HttpServletRequest req,
                        HttpServletResponse res) throws IOException {
         PrintWriter writer = res.getWriter();
@@ -44,24 +41,5 @@ public class login extends HttpServlet {
         writer.println("</html>");
     }
 
-    public void doPost (HttpServletRequest req,
-                        HttpServletResponse res) throws IOException {
-        Usuario u = new Usuario();
-        UsuarioDAO uDAO = new UsuarioDAO();
-        u.setNome(req.getParameter("usuario"));
-        u.setSenha(req.getParameter("senha"));
-        try {
-            uDAO.buscarUsuarioNomeSenha(u.getNome(), u.getSenha());
-            req.getSession().setAttribute("logado", new Boolean(true));
-            req.getSession().setAttribute("usuario", "admin");
-            res.getWriter().println("<script>alert(\"Logado\");</script>");
-            res.sendRedirect("uploadvideo");
-        } catch (Exception ex) {
-            res.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            res.getWriter().println("<h1>Login errado!!!</h1>");
-            res.getWriter().println("        <form action=\"login\" method=\"GET\">");
-            res.getWriter().println("            <input type=\"submit\" value=\"Voltar\">");
-            res.getWriter().println("        </form>");
-        }
-    }
+
 }
