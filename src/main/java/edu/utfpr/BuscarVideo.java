@@ -33,7 +33,7 @@ public class BuscarVideo extends HttpServlet {
             writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
             writer.println("        </form>");
             if (request.getParameter("nome") != null){
-            String video = request.getParameter("nome");
+            String video = request.getParameter("nome").toString();
                 writer.println("<ul>");
                 writer.println("<li>"+
                 "<video width=\"160\" height=\"120\" controls>"+
