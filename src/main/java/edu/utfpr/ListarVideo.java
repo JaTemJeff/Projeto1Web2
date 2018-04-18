@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.utfpr;
 
 import java.io.IOException;
@@ -15,16 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Aluno
- */
 @WebServlet(name = "ListarVideo", urlPatterns = {"/listavideos"})
 public class ListarVideo extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setCharacterEncoding("UTF-8");
         PrintWriter writer = response.getWriter();
         HttpSession session = request.getSession();
         if (session.getAttribute("logado") != null){

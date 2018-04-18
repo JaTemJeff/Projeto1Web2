@@ -17,6 +17,7 @@ public class BuscarVideo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setCharacterEncoding("UTF-8");
         PrintWriter writer = response.getWriter();
         HttpSession session = request.getSession();
         if (session.getAttribute("logado") != null){
@@ -40,8 +41,8 @@ public class BuscarVideo extends HttpServlet {
                     "<source src=\"uploads/" + video + ".mp4\" type=\"video/mp4\">"+
                 "</video></li>");
                 writer.println("</ul>");
-            } else {
-                writer.println("<h3>Vídeo não encontrado</h3>");
+            } else if (request.getParameter("nome").equals("naoencontrado")) {
+                writer.println("<script>alert(\"Vídeo não encontrado\");</script>");
             }
             writer.println("        <form action=\"listavideos\" method=\"GET\">");
             writer.println("            <input type=\"submit\" value=\"Listar vídeos\">");
@@ -65,7 +66,7 @@ public class BuscarVideo extends HttpServlet {
         if(salvo){
             response.sendRedirect("buscarvideo?nome=" + nome_video);
         } else {
-            response.sendRedirect("buscarvideo");
+            response.sendRedirect("buscarvideo?nome=naoencontrado");
             response.getWriter().println("<script>alert(\"Video nao encontrado\");</script>");
         }
     }
