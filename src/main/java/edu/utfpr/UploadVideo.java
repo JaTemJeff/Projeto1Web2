@@ -30,8 +30,6 @@ public class UploadVideo extends HttpServlet {
     private int id = 0;
     private String path;
     private String nome_video; 
-    
-    ConexaoBD conexao = new ConexaoBD();
 
     public void doGet (HttpServletRequest req,
                        HttpServletResponse res) throws IOException {
@@ -71,7 +69,6 @@ public class UploadVideo extends HttpServlet {
                         HttpServletResponse res) throws IOException, ServletException {
         Part part = req.getPart("arquivo");
         nome_video = part.getSubmittedFileName();
-        conexao.salvarVideo(nome_video);
         String videos_path = req.getServletContext().getRealPath("");
         String[] newpath = videos_path.split("\\\\");
         StringBuilder str = new StringBuilder();
@@ -87,8 +84,9 @@ public class UploadVideo extends HttpServlet {
         InputStream in = part.getInputStream();
         if (part.getContentType().equals("video/mp4")) {
             Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
+            ConexaoBD conexao = new ConexaoBD();
+            conexao.salvarVideo(nome_video);
         }
-        
         part.delete();
         res.sendRedirect("uploadvideo");
    }
