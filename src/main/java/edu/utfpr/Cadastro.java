@@ -5,6 +5,8 @@
  */
 package edu.utfpr;
 
+import edu.utfpr.entidadesedao.Usuario;
+import edu.utfpr.entidadesedao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -47,7 +49,7 @@ public class Cadastro extends HttpServlet {
         u.setNome(req.getParameter("usuario"));
         u.setSenha(req.getParameter("senha"));
         try {
-            uDAO.salvaUsuario(u.getNome(), u.getSenha());
+            uDAO.salvaUsuario(u);
             res.sendRedirect("login");
         } catch (Exception ex) {
             res.getWriter().println("<script>alert(\"Usuario ja cadastrado, tente outro!\");</script>");
