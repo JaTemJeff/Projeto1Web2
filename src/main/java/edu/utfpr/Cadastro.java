@@ -30,7 +30,7 @@ public class Cadastro extends HttpServlet {
         writer.println("    <head>");
         writer.println("        <meta http-equiv=\"content-type\"");
         writer.println("              content=\"text/html; charset=utf-8\"/>");
-        writer.println("        <title>Login</title>");
+        writer.println("        <title>Cadastro</title>");
         writer.println("    </head>");
         writer.println("    <body>");
         if (req.getParameter("save") != null) {
@@ -58,11 +58,9 @@ public class Cadastro extends HttpServlet {
         u.setSenha(req.getParameter("senha"));
         try {
             uDAO.salvaUsuario(u);
-            req.getSession().setAttribute("mensagem", "Usuario "+u.getNome()+" cadastrado!");
-            res.sendRedirect("login");
+            res.sendRedirect("login?save=true");
         } catch (PSQLException ex) {
             res.sendRedirect("cadastro?save=false");
-            res.getWriter().println("<script>alert(\"Usuario ja cadastrado, tente outro!\");</script>");
         }
     }
 

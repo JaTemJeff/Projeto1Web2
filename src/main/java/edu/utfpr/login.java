@@ -25,10 +25,16 @@ import javax.servlet.http.HttpServletResponse;
 public class login extends HttpServlet {
     public void doGet (HttpServletRequest req,
                        HttpServletResponse res) throws IOException {
-        PrintWriter writer = res.getWriter();
-        if (req.getSession().getAttribute("mensagem") != null){
-            writer.println("        <h1>"+req.getSession().getAttribute("mensagem")+"</h1>");
-            req.getSession().removeAttribute("mensagem");
+        PrintWriter writer = res.getWriter();                 
+        if (req.getParameter("save") != null) {
+            if (req.getParameter("save").equals("true")) {
+                res.getWriter().println("<script>alert(\"Usuario cadastrado\");</script>");
+            }
+        }
+        if (req.getParameter("existe") != null) {
+            if (req.getParameter("existe").equals("false")) {
+                res.getWriter().println("<script>alert(\"Usuario nao encontrado\");</script>");
+            }
         }
         writer.println("<!DOCTYPE HTML>");
         writer.println("<html>");
@@ -37,7 +43,7 @@ public class login extends HttpServlet {
         writer.println("              content=\"text/html; charset=utf-8\"/>");
         writer.println("        <title>Login</title>");
         writer.println("    </head>");
-        writer.println("    <body>");
+        writer.println("    <body>");        
         writer.println("        <h1>Login</h1>");
         writer.println("        <form action=\"login\" method=\"POST\">");
         writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
@@ -63,8 +69,7 @@ public class login extends HttpServlet {
             req.getSession().setAttribute("mensagem", "Logado com sucesso");
             res.sendRedirect("uploadvideo");
         } catch (Exception ex) {
-            res.sendRedirect("login");
-            res.getWriter().println("<script>alert(\"Usuario nao encontrado\");</script>");
+            res.sendRedirect("login?existe=false");            
         }
     }
 }
