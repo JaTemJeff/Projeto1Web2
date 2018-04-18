@@ -28,10 +28,8 @@ public class BuscarVideo extends HttpServlet {
             writer.println("    </head>");
             writer.println("    <body>");
             writer.println("        <h1>Buscar vídeo:</h1>");
-            writer.println("        <form action=\"buscarvideo\" method=\"POST\"");
-            writer.println("                          accept-charset=\"utf-8\"");
-            writer.println("                          enctype=\"multipart/form-data\">");
-            writer.println("            <input type=\"text\" name=\"arquivo\" value=\"\" />");
+            writer.println("        <form action=\"buscarvideo\" method=\"POST\">");
+            writer.println("            <input type=\"text\" name=\"arquivo\" value=\"\">");
             writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
             writer.println("        </form>");
             if (request.getParameter("nome") != null){
@@ -53,8 +51,7 @@ public class BuscarVideo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nome_video = request.getParameter("arquivo");
-        System.out.println(nome_video);
+        String nome_video = request.getParameter("arquivo").toString();
         ConexaoBD bd = new ConexaoBD();
         boolean salvo = bd.buscarVideo(nome_video);
         if(salvo){
