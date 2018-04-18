@@ -43,6 +43,8 @@ public class BuscarVideo extends HttpServlet {
                 "</video></li>");
                 writer.println("</ul>");
             }
+            writer.println("    </body>");
+            writer.println("</html>");
         } else {
             response.sendRedirect("login");
         }
