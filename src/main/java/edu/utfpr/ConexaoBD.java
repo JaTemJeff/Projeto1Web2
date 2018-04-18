@@ -52,7 +52,8 @@ public class ConexaoBD {
                             "titulo VARCHAR(255)" +
                             ");" +
                     "CREATE TABLE IF NOT EXISTS Usuario("+
-                            "nome VARCHAR (100), "+
+                            "id_usuario SERIAL PRIMARY KEY," +
+                            "nome VARCHAR (100) UNIQUE, "+
                             "senha VARCHAR (100)"+
                             ");");
             st.execute();

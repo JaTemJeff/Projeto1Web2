@@ -13,13 +13,17 @@ public class UsuarioDAO {
     public UsuarioDAO() {
         bd = new ConexaoBD();
     }
-    public void SalvaUsuario (Usuario u) throws SQLException {
-        con = bd.getConnection();
-        PreparedStatement st = st = con.prepareStatement("INSERT INTO Usuario (nome, senha) " +"VALUES (?, ?);");
-        st.setString(1, u.getNome());
-        st.setString(2, u.getSenha());
-        st.execute();
-        con.close();
+    public void salvaUsuario (Usuario u) throws SQLException {
+        try {
+            con = bd.getConnection();
+            PreparedStatement st = st = con.prepareStatement("INSERT INTO Usuario (nome, senha) " +"VALUES (?, ?);");
+            st.setString(1, u.getNome());
+            st.setString(2, u.getSenha());
+            st.execute();
+            con.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void excluirUsuario (Usuario u) throws Exception {
         try{
