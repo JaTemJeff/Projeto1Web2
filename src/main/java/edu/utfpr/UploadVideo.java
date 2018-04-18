@@ -71,7 +71,6 @@ public class UploadVideo extends HttpServlet {
                         HttpServletResponse res) throws IOException, ServletException {
         Part part = req.getPart("arquivo");
         nome_video = part.getSubmittedFileName();
-        nome_video = nome_video.split(".")[1];
         String videos_path = req.getServletContext().getRealPath("");
         String[] newpath = videos_path.split("\\\\");
         StringBuilder str = new StringBuilder();
@@ -87,6 +86,7 @@ public class UploadVideo extends HttpServlet {
         InputStream in = part.getInputStream();
         if (part.getContentType().equals("video/mp4")) {
             Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
+            nome_video = nome_video.split("\\.")[0];
             ConexaoBD conexao = new ConexaoBD();
             conexao.salvarVideo(nome_video);
         }

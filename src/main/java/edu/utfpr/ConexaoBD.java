@@ -73,7 +73,7 @@ public class ConexaoBD {
     }
     
     public boolean buscarVideo(String nome){
-        String sql = "SELECT * FROM Video WHERE titulo LIKE " + nome + ";";
+        String sql = "SELECT * FROM Video WHERE titulo LIKE '" + nome + "';";
         try {
             PreparedStatement st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
