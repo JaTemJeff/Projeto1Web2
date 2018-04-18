@@ -33,6 +33,9 @@ public class Cadastro extends HttpServlet {
         writer.println("        <title>Login</title>");
         writer.println("    </head>");
         writer.println("    <body>");
+        if (req.getParameter("save").equals("false")) {
+            res.getWriter().println("<script>alert(\"Usuario ja cadastrado, tente outro!\");</script>");
+        }
         writer.println("        <h1>Cadastro</h1>");
         writer.println("        <form action=\"cadastro\" method=\"POST\">");
         writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
@@ -52,11 +55,11 @@ public class Cadastro extends HttpServlet {
         u.setNome(req.getParameter("usuario"));
         u.setSenha(req.getParameter("senha"));
         try {
-            uDAO.salvaUsuario(u);            
-            req.getSession().setAttribute("cadastro", new Boolean(true));
-            req.getSession().setAttribute("mensagem", "Cadastrado com sucesso");
+            uDAO.salvaUsuario(u);
+            req.getSession().setAttribute("mensagem", "Usuario "+u.getNome()+" cadastrado!");
             res.sendRedirect("login");
         } catch (PSQLException ex) {
+            res.sendRedirect("cadastro?save=false");
             res.getWriter().println("<script>alert(\"Usuario ja cadastrado, tente outro!\");</script>");
         }
     }

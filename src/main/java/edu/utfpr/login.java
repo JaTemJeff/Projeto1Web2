@@ -26,9 +26,8 @@ public class login extends HttpServlet {
     public void doGet (HttpServletRequest req,
                        HttpServletResponse res) throws IOException {
         PrintWriter writer = res.getWriter();
-        if (req.getSession().getAttribute("cadastro") != null){
+        if (req.getSession().getAttribute("mensagem") != null){
             writer.println("        <h1>"+req.getSession().getAttribute("mensagem")+"</h1>");
-            req.getSession().removeAttribute("cadastro");
             req.getSession().removeAttribute("mensagem");
         }
         writer.println("<!DOCTYPE HTML>");
@@ -64,6 +63,7 @@ public class login extends HttpServlet {
             req.getSession().setAttribute("mensagem", "Logado com sucesso");
             res.sendRedirect("uploadvideo");
         } catch (Exception ex) {
+            res.sendRedirect("login");
             res.getWriter().println("<script>alert(\"Usuario nao encontrado\");</script>");
         }
     }
