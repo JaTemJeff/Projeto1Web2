@@ -33,8 +33,10 @@ public class Cadastro extends HttpServlet {
         writer.println("        <title>Login</title>");
         writer.println("    </head>");
         writer.println("    <body>");
-        if (req.getParameter("save").equals("false")) {
-            res.getWriter().println("<script>alert(\"Usuario ja cadastrado, tente outro!\");</script>");
+        if (req.getParameter("save") != null) {
+            if (req.getParameter("save").equals("false")) {
+                res.getWriter().println("<script>alert(\"Usuario ja cadastrado, tente outro!\");</script>");
+            }
         }
         writer.println("        <h1>Cadastro</h1>");
         writer.println("        <form action=\"cadastro\" method=\"POST\">");
