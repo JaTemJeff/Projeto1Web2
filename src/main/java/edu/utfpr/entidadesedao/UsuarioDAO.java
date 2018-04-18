@@ -22,7 +22,10 @@ public class UsuarioDAO {
             st.setString(2, u.getSenha());
             st.execute();
             con.close();
-        }catch (Exception e) {
+        }catch (PSQLException e) {
+            throw e;
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }

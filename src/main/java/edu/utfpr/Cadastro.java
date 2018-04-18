@@ -33,7 +33,7 @@ public class Cadastro extends HttpServlet {
         writer.println("        <title>Login</title>");
         writer.println("    </head>");
         writer.println("    <body>");
-        writer.println("        <h1>Login</h1>");
+        writer.println("        <h1>Cadastro</h1>");
         writer.println("        <form action=\"cadastro\" method=\"POST\">");
         writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\" required>");
