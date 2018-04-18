@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +45,6 @@ public class ConexaoBD {
     }
     
     private void criaTabelas(){
-        getConnection();
         try {
             PreparedStatement st = con.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Video (" +
@@ -58,7 +58,6 @@ public class ConexaoBD {
     }
     
     public void salvarVideo(String nome){
-        getConnection();
         String sql = "insert into Video (titulo) values (?);";
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -69,4 +68,16 @@ public class ConexaoBD {
         }
     }
     
+    public boolean buscarVideo(String nome){
+        String sql = "SELECT * FROM Video WHERE titulo LIKE " + nome;
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs != null)
+                return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }
