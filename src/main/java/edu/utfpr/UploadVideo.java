@@ -36,15 +36,16 @@ public class UploadVideo extends HttpServlet {
     public void doGet (HttpServletRequest req,
                        HttpServletResponse res) throws IOException {
         PrintWriter writer = res.getWriter();
-        if(req.getAttribute("logado") != null){
+        HttpSession session = req.getSession();
+        if (session.getAttribute("logado") != null){
             writer.println("<!DOCTYPE HTML>");
             writer.println("<html>");
             writer.println("    <head>");
             writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
-            writer.println("        <title>Upload de Vï¿½deo</title>");
+            writer.println("        <title>Upload de Vídeo</title>");
             writer.println("    </head>");
             writer.println("    <body>");
-            writer.println("        <h1>Enviar vï¿½deos: (.mp4)</h1>");
+            writer.println("        <h1>Enviar vídeos: (.mp4)</h1>");
             writer.println("        <form action=\"uploadvideo\" method=\"POST\"");
             writer.println("                          accept-charset=\"utf-8\"");
             writer.println("                          enctype=\"multipart/form-data\">");
