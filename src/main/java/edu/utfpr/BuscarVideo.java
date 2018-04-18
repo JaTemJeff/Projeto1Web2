@@ -43,6 +43,12 @@ public class BuscarVideo extends HttpServlet {
             } else {
                 writer.println("<h3>Vídeo não encontrado</h3>");
             }
+            writer.println("        <form action=\"buscarvideo\" method=\"GET\">");
+            writer.println("            <input type=\"submit\" value=\"Buscar vídeos\">");
+            writer.println("        </form>");
+            writer.println("        <form action=\"uploadvideo\" method=\"GET\">");
+            writer.println("            <input type=\"submit\" value=\"Upload de vídeos\">");
+            writer.println("        </form>");
             writer.println("    </body>");
             writer.println("</html>");
         } else {
