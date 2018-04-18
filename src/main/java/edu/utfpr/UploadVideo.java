@@ -71,6 +71,7 @@ public class UploadVideo extends HttpServlet {
                         HttpServletResponse res) throws IOException, ServletException {
         Part part = req.getPart("arquivo");
         nome_video = part.getSubmittedFileName();
+        nome_video = nome_video.split(".")[1];
         String videos_path = req.getServletContext().getRealPath("");
         String[] newpath = videos_path.split("\\\\");
         StringBuilder str = new StringBuilder();
