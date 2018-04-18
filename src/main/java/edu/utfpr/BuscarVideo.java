@@ -41,7 +41,8 @@ public class BuscarVideo extends HttpServlet {
                     "<source src=\"uploads/" + video + ".mp4\" type=\"video/mp4\">"+
                 "</video></li>");
                 writer.println("</ul>");
-            } else if (request.getParameter("nome").equals("naoencontrado")) {
+            } else if (request.getParameter("nome") != null && 
+                        request.getParameter("nome").equals("naoencontrado")) {
                 writer.println("<script>alert(\"Vídeo não encontrado\");</script>");
             }
             writer.println("        <form action=\"listavideos\" method=\"GET\">");
