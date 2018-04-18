@@ -52,6 +52,7 @@ public class BuscarVideo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nome_video = request.getParameter("arquivo");
+        System.out.println(nome_video);
         ConexaoBD bd = new ConexaoBD();
         boolean salvo = bd.buscarVideo(nome_video);
         if(salvo){
