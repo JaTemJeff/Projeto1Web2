@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -78,11 +79,28 @@ public class ConexaoBD {
         try {
             PreparedStatement st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
-            if (rs != null)
+            if (rs.next())
                 return true;
+            else
+                return false;
         } catch (SQLException ex) {
             Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+
+    public List<String> listarVideos() {
+        List<String> lista = null;
+        String sql = "SELECT * FROM Video;";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                lista.add(rs.getString("titulo"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
     }
 }
