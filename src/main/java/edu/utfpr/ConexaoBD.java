@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,7 +91,7 @@ public class ConexaoBD {
     }
 
     public List<String> listarVideos() {
-        List<String> lista = null;
+        List<String> lista = new ArrayList<String>();
         String sql = "SELECT * FROM Video;";
         try {
             PreparedStatement st = con.prepareStatement(sql);
