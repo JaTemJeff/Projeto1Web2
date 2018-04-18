@@ -40,7 +40,12 @@ public class login extends HttpServlet {
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\">");
         writer.println("            <input type=\"submit\" value=\"logar\">");
         writer.println("        </form>");
-        writer.println("A" + res.sendRedirect("cadastro")); 
+        writer.println("        <h1>Cadastro</h1>");
+        writer.println("        <form action=\"cadastro\" method=\"POST\">");
+        writer.println("            <input type=\"text\" name=\"usuario\" value=\"\">");
+        writer.println("            <input type=\"password\" name=\"senha\" value=\"\">");
+        writer.println("            <input type=\"submit\" value=\"cadastrar\">");
+        writer.println("        </form>");
         writer.println("    </body>");
         writer.println("</html>");
     }

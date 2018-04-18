@@ -22,26 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Cadastro", urlPatterns = {"/cadastro"})
 public class Cadastro extends HttpServlet {
 
-    public void doGet (HttpServletRequest req,
-                       HttpServletResponse res) throws IOException {
-        PrintWriter writer = res.getWriter();
-        writer.println("<!DOCTYPE HTML>");
-        writer.println("<html>");
-        writer.println("    <head>");
-        writer.println("        <meta http-equiv=\"content-type\"");
-        writer.println("              content=\"text/html; charset=utf-8\"/>");
-        writer.println("        <title>Cadastro</title>");
-        writer.println("    </head>");
-        writer.println("    <body>");
-        writer.println("        <h1>Cadastro</h1>");
-        writer.println("        <form action=\"login\" method=\"POST\">");
-        writer.println("            <input type=\"text\" name=\"usuario\" value=\"\">");
-        writer.println("            <input type=\"password\" name=\"senha\" value=\"\">");
-        writer.println("            <input type=\"submit\" value=\"Cadastrar\">");
-        writer.println("        </form>");
-        writer.println("    </body>");
-        writer.println("</html>");
-    }
      public void doPost (HttpServletRequest req,
                         HttpServletResponse res) throws IOException {
         Usuario u = new Usuario();
