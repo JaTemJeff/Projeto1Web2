@@ -26,7 +26,7 @@ public class login extends HttpServlet {
     public void doGet (HttpServletRequest req,
                        HttpServletResponse res) throws IOException {
         PrintWriter writer = res.getWriter();
-        if (req.getSession.getAttribute("cadastro") != null){
+        if (req.getSession().getAttribute("cadastro") != null){
             writer.println("        <h1>"+req.getSession().getAttribute("mensagem")+"</h1>");
         }
         writer.println("<!DOCTYPE HTML>");
