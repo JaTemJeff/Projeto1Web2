@@ -26,6 +26,9 @@ public class login extends HttpServlet {
     public void doGet (HttpServletRequest req,
                        HttpServletResponse res) throws IOException {
         PrintWriter writer = res.getWriter();
+        if (req.getSession.getAttribute("cadastro") != null){
+            writer.println("        <h1>"+req.getSession().getAttribute("mensagem")+"</h1>");
+        }
         writer.println("<!DOCTYPE HTML>");
         writer.println("<html>");
         writer.println("    <head>");
@@ -59,8 +62,7 @@ public class login extends HttpServlet {
         try {
             uDAO.buscarUsuarioNomeSenha(u.getNome(), u.getSenha());
             req.getSession().setAttribute("logado", new Boolean(true));
-            req.getSession().setAttribute("usuario", "admin");
-            res.getWriter().println("<script>alert(\"Logado\");</script>");
+            req.getSession().setAttribute("mensagem", "Logado com sucesso");
             res.sendRedirect("uploadvideo");
         } catch (Exception ex) {
             res.setStatus(HttpServletResponse.SC_FORBIDDEN);

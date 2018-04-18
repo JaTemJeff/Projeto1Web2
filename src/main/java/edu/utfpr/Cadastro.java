@@ -29,7 +29,9 @@ public class Cadastro extends HttpServlet {
         u.setNome(req.getParameter("usuario"));
         u.setSenha(req.getParameter("senha"));
         try {
-            uDAO.salvaUsuario(u);
+            uDAO.salvaUsuario(u);            
+            req.getSession().setAttribute("cadastro", new Boolean(true));
+            req.getSession().setAttribute("mensagem", "Cadastrado com sucesso");
             res.sendRedirect("login");
         } catch (Exception ex) {
             res.getWriter().println("<script>alert(\"Usuario ja cadastrado, tente outro!\");</script>");
