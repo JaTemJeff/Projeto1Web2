@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,6 +26,8 @@ public class ListarVideo extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter writer = response.getWriter();
+        HttpSession session = request.getSession();
+        if (session.getAttribute("logado") != null){
             writer.println("<!DOCTYPE HTML>");
             writer.println("<html>");
             writer.println("    <head>");
@@ -42,9 +45,14 @@ public class ListarVideo extends HttpServlet {
                         "<source src=\"uploads/" + nome + ".mp4\" type=\"video/mp4\">"+
                     "</video></li>");
                 }
+            } else {
+                writer.println("<h3>Nenhum vídeo encontrado</h3>");
             }
             writer.println("</ul>");
             writer.println("    </body>");
             writer.println("</html>");
+        } else {
+            response.sendRedirect("login");
+        }
     }
 }

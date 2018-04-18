@@ -29,17 +29,19 @@ public class BuscarVideo extends HttpServlet {
             writer.println("    <body>");
             writer.println("        <h1>Buscar vídeo:</h1>");
             writer.println("        <form action=\"buscarvideo\" method=\"POST\">");
-            writer.println("            <input type=\"text\" name=\"arquivo\" value=\"\">");
+            writer.println("            <input type=\"text\" name=\"arquivo\" value=\"\" required>");
             writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
             writer.println("        </form>");
             if (request.getParameter("nome") != null){
             String video = request.getParameter("nome").toString();
                 writer.println("<ul>");
                 writer.println("<li>"+
-                "<video width=\"160\" height=\"120\" controls>"+
+                "<video width=\"640\" height=\"560\" controls>"+
                     "<source src=\"uploads/" + video + ".mp4\" type=\"video/mp4\">"+
                 "</video></li>");
                 writer.println("</ul>");
+            } else {
+                writer.println("<h3>Vídeo não encontrado</h3>");
             }
             writer.println("    </body>");
             writer.println("</html>");

@@ -51,15 +51,13 @@ public class UploadVideo extends HttpServlet {
             writer.println("            <input type=\"file\" name=\"arquivo\" value=\"\" />");
             writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
             writer.println("        </form>");
+            writer.println("        <form action=\"buscarvideo\" method=\"GET\">");
+            writer.println("            <input type=\"submit\" value=\"Buscar vídeos\">");
+            writer.println("        </form>");
+            writer.println("        <form action=\"listavideos\" method=\"GET\">");
+            writer.println("            <input type=\"submit\" value=\"Listar vídeos\">");
+            writer.println("        </form>");
             writer.println("    </font>");
-            writer.println("<ul>");
-            for (int i = 0; i < this.id; i++) {
-                writer.println("<li>"+
-                "<video width=\"160\" height=\"120\" controls>"+
-                    "<source src=\"uploads/" + i + ".mp4\" type=\"video/mp4\">"+
-                "</video></li>");
-            }
-            writer.println("</ul>");
             writer.println("    </body>");
             writer.println("</html>");
         }else{

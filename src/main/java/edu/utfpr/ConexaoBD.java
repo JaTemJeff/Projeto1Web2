@@ -51,7 +51,7 @@ public class ConexaoBD {
             PreparedStatement st = con.prepareStatement(
                     "CREATE TABLE IF NOT EXISTS Video (" +
                             "id SERIAL PRIMARY KEY," +
-                            "titulo VARCHAR(255)" +
+                            "titulo VARCHAR(255) UNIQUE" +
                             ");" +
                     "CREATE TABLE IF NOT EXISTS Usuario("+
                             "id_usuario SERIAL PRIMARY KEY," +
