@@ -16,14 +16,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import javax.websocket.Session;
 
 @WebServlet(urlPatterns="/uploadvideo")
 @MultipartConfig(fileSizeThreshold=1024*1024*2,
                  maxFileSize=1024*1024*50,
                  maxRequestSize=1024*1024*100)
 public class UploadVideo extends HttpServlet {
-
+    
     private static final long serialVersionUID = 1L;
     private int id = 0;
     private String path;
@@ -34,31 +36,34 @@ public class UploadVideo extends HttpServlet {
     public void doGet (HttpServletRequest req,
                        HttpServletResponse res) throws IOException {
         PrintWriter writer = res.getWriter();
-
-        writer.println("<!DOCTYPE HTML>");
-        writer.println("<html>");
-        writer.println("    <head>");
-        writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
-        writer.println("        <title>Upload de V�deo</title>");
-        writer.println("    </head>");
-        writer.println("    <body>");
-        writer.println("        <h1>Enviar v�deos: (.mp4)</h1>");
-        writer.println("        <form action=\"uploadvideo\" method=\"POST\"");
-        writer.println("                          accept-charset=\"utf-8\"");
-        writer.println("                          enctype=\"multipart/form-data\">");
-        writer.println("            <input type=\"file\" name=\"arquivo\" value=\"\" />");
-        writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
-        writer.println("        </form>");
-        writer.println("<ul>");
-        for (int i = 0; i < this.id; i++) {
-            writer.println("<li>"+
-            "<video width=\"160\" height=\"120\" controls>"+
-                "<source src=\"uploads/" + i + ".mp4\" type=\"video/mp4\">"+
-            "</video></li>");
+        if(req.getAttribute("logado") != null){
+            writer.println("<!DOCTYPE HTML>");
+            writer.println("<html>");
+            writer.println("    <head>");
+            writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
+            writer.println("        <title>Upload de V�deo</title>");
+            writer.println("    </head>");
+            writer.println("    <body>");
+            writer.println("        <h1>Enviar v�deos: (.mp4)</h1>");
+            writer.println("        <form action=\"uploadvideo\" method=\"POST\"");
+            writer.println("                          accept-charset=\"utf-8\"");
+            writer.println("                          enctype=\"multipart/form-data\">");
+            writer.println("            <input type=\"file\" name=\"arquivo\" value=\"\" />");
+            writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
+            writer.println("        </form>");
+            writer.println("<ul>");
+            for (int i = 0; i < this.id; i++) {
+                writer.println("<li>"+
+                "<video width=\"160\" height=\"120\" controls>"+
+                    "<source src=\"uploads/" + i + ".mp4\" type=\"video/mp4\">"+
+                "</video></li>");
+            }
+            writer.println("</ul>");
+            writer.println("    </body>");
+            writer.println("</html>");
+        }else{
+            res.sendRedirect("login");
         }
-        writer.println("</ul>");
-        writer.println("    </body>");
-        writer.println("</html>");
     }
 
     public void doPost (HttpServletRequest req,
