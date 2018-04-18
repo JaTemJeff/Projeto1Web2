@@ -43,7 +43,7 @@ public class UploadVideo extends HttpServlet {
             writer.println("        <title>Upload de Vídeo</title>");
             writer.println("    </head>");
             writer.println("    <body bgcolor=\"#000000\">");
-            writer.println("    <font color=\"FF0000\"> </font>");
+            writer.println("    <font color=\"FF0000\">");
             writer.println("        <h1>Enviar vídeos: (.mp4)</h1>");
             writer.println("        <form action=\"uploadvideo\" method=\"POST\"");
             writer.println("                          accept-charset=\"utf-8\"");
@@ -51,6 +51,7 @@ public class UploadVideo extends HttpServlet {
             writer.println("            <input type=\"file\" name=\"arquivo\" value=\"\" />");
             writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
             writer.println("        </form>");
+            writer.println("    </font>");
             writer.println("<ul>");
             for (int i = 0; i < this.id; i++) {
                 writer.println("<li>"+
