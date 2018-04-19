@@ -35,8 +35,8 @@ public class Cadastro extends HttpServlet {
         writer.println("    <body>");        
         writer.println("        <h1>Cadastro</h1>");
         writer.println("        <form action=\"cadastro\" method=\"POST\">");
-        writer.println("            <label for=\"usuario\">Usuario:</label>");
-        writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
+        writer.println("            <label for=\"usuario\">Email:</label>");
+        writer.println("            <input type=\"email\" name=\"usuario\" value=\"\" required>");
         writer.println("            <label for=\"senha\">Senha:</label>");
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\" required>");
         writer.println("            <input type=\"submit\" value=\"cadastro\">");
@@ -52,12 +52,8 @@ public class Cadastro extends HttpServlet {
         Usuario u = new Usuario();
         UsuarioDAO uDAO = new UsuarioDAO();
         String email = req.getParameter("usuario").toString();
-        if (email.contains("@")) {
-            u.setEmail(req.getParameter("usuario"));
-            u.setSenha(req.getParameter("senha"));
-        }else {
-            res.sendRedirect("cadastro?save=email");
-        }
+        u.setEmail(req.getParameter("usuario"));
+        u.setSenha(req.getParameter("senha"));
         try {
             uDAO.salvaUsuario(u);
             res.sendRedirect("login?save=true");
