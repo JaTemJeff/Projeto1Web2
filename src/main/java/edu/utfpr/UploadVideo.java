@@ -99,12 +99,10 @@ public class UploadVideo extends HttpServlet {
         InputStream in = part.getInputStream();
       
         if (part.getContentType().equals("video/mp4")) {
-            Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
-            nome_video = nome_video.split("\\.")[0];
-            
             try {
                 ConexaoBD conexao = new ConexaoBD();
-                conexao.salvarVideo(nome_video);
+                conexao.salvarVideo(nome_video.split("\\.")[0]);
+                Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
                 
             } catch (PSQLException ex) {
                 res.sendRedirect("uploadvideo?sucesso=false");
