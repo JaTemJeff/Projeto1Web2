@@ -44,8 +44,8 @@ public class UploadVideo extends HttpServlet {
             writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
             writer.println("        <title>Upload de Video</title>");
             writer.println("    </head>");
-            writer.println("    <body bgcolor=\"#D8CEF6\">");
-            writer.println("    <font color=\"#1C1C1C\">");
+            writer.println("    <body bgcolor=\"#424242\">");
+            writer.println("    <font color=\"#FAFAFA\">");
             writer.println("        <h1 style=\"text-align:center;\">Enviar videos: (.mp4)</h1>");
             writer.println("        <form style=\"text-align:center;\" action=\"uploadvideo\" method=\"POST\"");
             writer.println("                          accept-charset=\"utf-8\"");
