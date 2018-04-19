@@ -29,7 +29,7 @@ public class BuscarVideo extends HttpServlet {
             writer.println("    </head>");
             writer.println("    <body bgcolor=\"#424242\">>");
             writer.println("    <font color=\"#FAFAFA\">");
-            writer.println("        <h1 style=\"text-align:center;\">Buscar vídeo:</h1>");
+            writer.println("        <h1 style=\"text-align:center;\">Buscar video:</h1>");
             writer.println("        <form style=\"text-align:center;\" action=\"buscarvideo\" method=\"POST\">");
             writer.println("            <input type=\"text\" name=\"arquivo\" value=\"\" required>");
             writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
@@ -44,13 +44,15 @@ public class BuscarVideo extends HttpServlet {
                 writer.println("</ul>");
             } else if (request.getParameter("nome") != null && 
                         request.getParameter("nome").equals("naoencontrado")) {
-                writer.println("<script>alert(\"Vídeo não encontrado\");</script>");
+                writer.println("<script>alert(\"Video não encontrado\");</script>");
             }
+            writer.println("<br/>");
             writer.println("        <form style=\"text-align:center;\"action=\"listavideos\" method=\"GET\">");
-            writer.println("            <input type=\"submit\" value=\"Listar vídeos\">");
+            writer.println("            <input type=\"submit\" value=\"Listar videos\">");
             writer.println("        </form>");
+            writer.println("<br/>");
             writer.println("        <form style=\"text-align:center;\" action=\"uploadvideo\" method=\"GET\">");
-            writer.println("            <input type=\"submit\" value=\"Upload de vídeos\">");
+            writer.println("            <input type=\"submit\" value=\"Upload de videos\">");
             writer.println("        </form>");
             writer.println("    </font>");
             writer.println("    </body>");
