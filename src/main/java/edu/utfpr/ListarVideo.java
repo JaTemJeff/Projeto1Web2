@@ -41,10 +41,10 @@ public class ListarVideo extends HttpServlet {
                 writer.println("<h3>Nenhum video encontrado</h3>");
             }
             writer.println("        <form action=\"buscarvideo\" method=\"GET\">");
-            writer.println("            <input type=\"submit\" value=\"Buscar vídeos\">");
+            writer.println("            <input type=\"submit\" value=\"Buscar videos\">");
             writer.println("        </form>");
             writer.println("        <form action=\"uploadvideo\" method=\"GET\">");
-            writer.println("            <input type=\"submit\" value=\"Upload de vídeos\">");
+            writer.println("            <input type=\"submit\" value=\"Upload de videos\">");
             writer.println("        </form>");
             writer.println("</ul>");
             writer.println("    </body>");
