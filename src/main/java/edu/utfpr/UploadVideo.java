@@ -64,8 +64,8 @@ public class UploadVideo extends HttpServlet {
             writer.println("        <form action=\"uploadvideo\" method=\"POST\"");
             writer.println("                          accept-charset=\"utf-8\"");
             writer.println("                          enctype=\"multipart/form-data\">");
-            writer.println("            <input type=\"file\" name=\"arquivo\" value=\"\" />");
-            writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
+            writer.println("            <input type=\"file\" name=\"arquivo\" value=\"\" required />");
+            writer.println("            <input type=\"submit\" name=\"enviar\" value=\"enviar\" />");
             writer.println("        </form>");
             writer.println("        <form style=\"text-align:center;\" action=\"buscarvideo\" method=\"GET\">");
             writer.println("            <input type=\"submit\" value=\"Buscar videos\">");
