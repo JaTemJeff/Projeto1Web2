@@ -56,7 +56,7 @@ public class ConexaoBD {
                             ");" +
                     "CREATE TABLE IF NOT EXISTS Usuario("+
                             "id_usuario SERIAL PRIMARY KEY," +
-                            "nome VARCHAR (100) UNIQUE, "+
+                            "email VARCHAR (100) UNIQUE, "+
                             "senha VARCHAR (100)"+
                             ");");
             st.execute();
