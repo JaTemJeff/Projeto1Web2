@@ -17,7 +17,7 @@ public class BuscarVideo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = response.getWriter();
         HttpSession session = request.getSession();
         if (session.getAttribute("logado") != null){
@@ -26,11 +26,11 @@ public class BuscarVideo extends HttpServlet {
             writer.println("    <head>");
             writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
             writer.println("        <title>Buscar Vídeo</title>");
+            writer.println("        <link rel=\"stylesheet\" href=\"styles.css\">");
             writer.println("    </head>");
-            writer.println("    <body bgcolor=\"#424242\">>");
-            writer.println("    <font color=\"#FAFAFA\">");
-            writer.println("        <h1 style=\"text-align:center;\">Buscar video:</h1>");
-            writer.println("        <form style=\"text-align:center;\" action=\"buscarvideo\" method=\"POST\">");
+            writer.println("    <body>");
+            writer.println("        <h1>Buscar video:</h1>");
+            writer.println("        <form action=\"buscarvideo\" method=\"POST\">");
             writer.println("            <input type=\"text\" name=\"arquivo\" value=\"\" required>");
             writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
             writer.println("        </form>");
@@ -44,17 +44,14 @@ public class BuscarVideo extends HttpServlet {
                 writer.println("</ul>");
             } else if (request.getParameter("nome") != null && 
                         request.getParameter("nome").equals("naoencontrado")) {
-                writer.println("<script>alert(\"Video não encontrado\");</script>");
+                response.getWriter().println("<script>alert(\"Video não encontrado!\");</script>");
             }
-            writer.println("<br/>");
             writer.println("        <form style=\"text-align:center;\"action=\"listavideos\" method=\"GET\">");
             writer.println("            <input type=\"submit\" value=\"Listar videos\">");
             writer.println("        </form>");
-            writer.println("<br/>");
             writer.println("        <form style=\"text-align:center;\" action=\"uploadvideo\" method=\"GET\">");
             writer.println("            <input type=\"submit\" value=\"Upload de videos\">");
             writer.println("        </form>");
-            writer.println("    </font>");
             writer.println("    </body>");
             writer.println("</html>");
         } else {

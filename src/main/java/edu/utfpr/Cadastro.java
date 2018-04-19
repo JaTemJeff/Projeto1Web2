@@ -22,6 +22,7 @@ public class Cadastro extends HttpServlet {
         writer.println("        <meta http-equiv=\"content-type\"");
         writer.println("              content=\"text/html; charset=utf-8\"/>");
         writer.println("        <title>Cadastro</title>");
+        writer.println("        <link rel=\"stylesheet\" href=\"styles.css\">");
         writer.println("    </head>");
         writer.println("    <body>");
         if (req.getParameter("save") != null) {
@@ -31,7 +32,9 @@ public class Cadastro extends HttpServlet {
         }
         writer.println("        <h1>Cadastro</h1>");
         writer.println("        <form action=\"cadastro\" method=\"POST\">");
+        writer.println("            <label for=\"usuario\">Usuario:</label>");
         writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
+        writer.println("            <label for=\"senha\">Senha:</label>");
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\" required>");
         writer.println("            <input type=\"submit\" value=\"cadastro\">");
         writer.println("        </form>");

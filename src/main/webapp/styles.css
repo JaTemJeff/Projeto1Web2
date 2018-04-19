@@ -1,0 +1,9 @@
+body {
+  background-color: #424242;
+  color: #FAFAFA;
+  text-align: center;
+}
+form{
+  display: block;
+  margin: 20px;
+}

@@ -25,6 +25,7 @@ public class ListarVideo extends HttpServlet {
             writer.println("    <head>");
             writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
             writer.println("        <title>Lista de videos</title>");
+            writer.println("        <link rel=\"stylesheet\" href=\"styles.css\">");
             writer.println("    </head>");
             writer.println("        <h1>Lista de Vídeos:</h1>");
             writer.println("<ul>");
