@@ -38,8 +38,8 @@ public class login extends HttpServlet {
         writer.println("    <body>");
         writer.println("        <h1>Login</h1>");
         writer.println("        <form action=\"login\" method=\"POST\">");
-        writer.println("            <label for=\"usuario\">Usuario:</label>");
-        writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
+        writer.println("            <label for=\"usuario\">Email:</label>");
+        writer.println("            <input type=\"email\" name=\"usuario\" value=\"\" required>");
         writer.println("            <label for=\"senha\">Senha:</label>");
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\" required>");
         writer.println("            <input type=\"submit\" value=\"logar\">");
@@ -60,7 +60,6 @@ public class login extends HttpServlet {
         try {
             uDAO.buscarUsuarioEmailSenha(u.getEmail(), u.getSenha());
             req.getSession().setAttribute("logado", new Boolean(true));
-            req.getSession().setAttribute("mensagem", "Logado com sucesso");
             res.sendRedirect("uploadvideo");
         } catch (Exception ex) {
             res.sendRedirect("login?existe=false");            
