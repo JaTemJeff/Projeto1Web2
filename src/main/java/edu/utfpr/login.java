@@ -34,16 +34,18 @@ public class login extends HttpServlet {
         writer.println("              content=\"text/html; charset=utf-8\"/>");
         writer.println("        <title>Login</title>");
         writer.println("    </head>");
-        writer.println("    <body>");        
-        writer.println("        <h1>Login</h1>");
-        writer.println("        <form action=\"login\" method=\"POST\">");
+        writer.println("    <body bgcolor=\"#424242\">");     
+        writer.println("    <font color=\"#FAFAFA\">");
+        writer.println("        <h1 style=\"text-align:center;\">Login</h1>");
+        writer.println("        <form style=\"text-align:center;\" action=\"login\" method=\"POST\">");
         writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\" required>");
         writer.println("            <input type=\"submit\" value=\"logar\">");
         writer.println("        </form>");
-        writer.println("        <form action=\"cadastro\" method=\"GET\">");
+        writer.println("        <form style=\"text-align:center;\" action=\"cadastro\" method=\"GET\">");
         writer.println("            <input type=\"submit\" value=\"Cadastro\">");
         writer.println("        </form>");
+        writer.println("    </font>");
         writer.println("    </body>");
         writer.println("</html>");
     }
