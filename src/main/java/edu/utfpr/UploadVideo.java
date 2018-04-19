@@ -63,6 +63,7 @@ public class UploadVideo extends HttpServlet {
             writer.println("    </body>");
             writer.println("</html>");
         }else{
+            res.getWriter().println("<script>alert(\"Você precisa estar logado!\");</script>");
             res.sendRedirect("login");
         }
     }
