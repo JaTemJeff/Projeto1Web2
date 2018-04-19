@@ -17,7 +17,6 @@ public class BuscarVideo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = response.getWriter();
         HttpSession session = request.getSession();
         if (session.getAttribute("logado") != null){
@@ -25,7 +24,7 @@ public class BuscarVideo extends HttpServlet {
             writer.println("<html>");
             writer.println("    <head>");
             writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
-            writer.println("        <title>Buscar Vídeo</title>");
+            writer.println("        <title>Buscar Video</title>");
             writer.println("        <link rel=\"stylesheet\" href=\"styles.css\">");
             writer.println("    </head>");
             writer.println("    <body>");
@@ -44,7 +43,7 @@ public class BuscarVideo extends HttpServlet {
                 writer.println("</ul>");
             } else if (request.getParameter("nome") != null && 
                         request.getParameter("nome").equals("naoencontrado")) {
-                response.getWriter().println("<script>alert(\"Video não encontrado!\");</script>");
+                response.getWriter().println("<script>alert(\"Video nao encontrado!\");</script>");
             }
             writer.println("        <form style=\"text-align:center;\"action=\"listavideos\" method=\"GET\">");
             writer.println("            <input type=\"submit\" value=\"Listar videos\">");

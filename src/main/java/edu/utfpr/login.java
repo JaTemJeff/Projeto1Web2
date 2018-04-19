@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 public class login extends HttpServlet {
     public void doGet (HttpServletRequest req,
                        HttpServletResponse res) throws IOException {
-        res.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = res.getWriter();                 
         if (req.getParameter("save") != null) {
             if (req.getParameter("save").equals("true")) {
@@ -39,7 +38,7 @@ public class login extends HttpServlet {
         writer.println("    <body>");
         writer.println("        <h1>Login</h1>");
         writer.println("        <form action=\"login\" method=\"POST\">");
-        writer.println("            <label for=\"usuario\">Usuário:</label>");
+        writer.println("            <label for=\"usuario\">Usuario:</label>");
         writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
         writer.println("            <label for=\"senha\">Senha:</label>");
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\" required>");
