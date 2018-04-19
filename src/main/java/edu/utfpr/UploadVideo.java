@@ -42,13 +42,13 @@ public class UploadVideo extends HttpServlet {
         if (req.getParameter("sucesso") != null) {
             if (req.getParameter("sucesso").equals("false")) {
                 res.getWriter().println("<script>alert(\"Nome do video existente!\");</script>");
-            }
-            else  if (req.getParameter("erroinesperado").equals("true")){
-                res.getWriter().println("<script>alert(\"Erro inesperado!\");</script>");
-            }
-            else if (req.getParameter("sucesso").equals("true")){
+            } else if (req.getParameter("sucesso").equals("true")){
                 res.getWriter().println("<script>alert(\"Video salvo com sucesso!\");</script>");
             }
+        }
+        if (req.getParameter("erroinesperado") != null &&
+            req.getParameter("erroinesperado").equals("true")){
+                res.getWriter().println("<script>alert(\"Erro inesperado!\");</script>");
         }
         
         if (session.getAttribute("logado") != null){
