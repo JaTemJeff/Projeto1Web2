@@ -17,8 +17,8 @@ public class UsuarioDAO {
     public void salvaUsuario (Usuario u) throws PSQLException{
         try {
             con = bd.getConnection();
-            PreparedStatement st = st = con.prepareStatement("INSERT INTO Usuario (nome, senha) " +"VALUES (?, ?);");
-            st.setString(1, u.getNome());
+            PreparedStatement st = st = con.prepareStatement("INSERT INTO Usuario (email, senha) " +"VALUES (?, ?);");
+            st.setString(1, u.getEmail());
             st.setString(2, u.getSenha());
             st.execute();
             con.close();
@@ -32,30 +32,30 @@ public class UsuarioDAO {
     public void excluirUsuario (Usuario u) throws Exception {
         try{
             con = bd.getConnection();
-            PreparedStatement st = con.prepareStatement("DELETE FROM Usuario WHERE nome LIKE '" + u.getNome() + "';");
+            PreparedStatement st = con.prepareStatement("DELETE FROM Usuario WHERE email LIKE '" + u.getEmail() + "';");
             st.execute();
             con.close();
         } catch (Exception e) {
-            throw new Exception ("Nome Inexistente");
+            throw new Exception ("Email Inexistente");
         }
     }
-    public void alterarUsuario (Usuario u, String nome) throws Exception {
+    public void alterarUsuario (Usuario u, String email) throws Exception {
         try{
             con = bd.getConnection();
-            PreparedStatement st = con.prepareStatement("UPDATE Usuario SET nome = '"+ nome +"' WHERE nome LIKE '" + u.getNome() + "';");
+            PreparedStatement st = con.prepareStatement("UPDATE Usuario SET email = '"+ email +"' WHERE email LIKE '" + u.getEmail() + "';");
             st.execute();
             con.close();
         } catch (Exception e) {
-            throw new Exception ("Nome Inexistente");
+            throw new Exception ("Email Inexistente");
         }
     }
-    public Usuario buscarUsuarioNomeSenha(String nome, String senha) throws Exception {
+    public Usuario buscarUsuarioEmailSenha(String email, String senha) throws Exception {
         con = bd.getConnection();
-        PreparedStatement st = con.prepareStatement("SELECT * FROM Usuario WHERE nome LIKE '" + nome +"' AND senha LIKE '"+senha+"';");
+        PreparedStatement st = con.prepareStatement("SELECT * FROM Usuario WHERE email LIKE '" + email +"' AND senha LIKE '"+senha+"';");
         ResultSet rs = st.executeQuery();
         if (rs.next()){
             Usuario u = new Usuario();
-            u.setNome(rs.getString("nome"));
+            u.setEmail(rs.getString("email"));
             u.setSenha(rs.getString("senha"));
             con.close();
             return u;

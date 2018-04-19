@@ -55,10 +55,10 @@ public class login extends HttpServlet {
                         HttpServletResponse res) throws IOException {
         Usuario u = new Usuario();
         UsuarioDAO uDAO = new UsuarioDAO();
-        u.setNome(req.getParameter("usuario"));
+        u.setEmail(req.getParameter("usuario"));
         u.setSenha(req.getParameter("senha"));
         try {
-            uDAO.buscarUsuarioNomeSenha(u.getNome(), u.getSenha());
+            uDAO.buscarUsuarioEmailSenha(u.getEmail(), u.getSenha());
             req.getSession().setAttribute("logado", new Boolean(true));
             req.getSession().setAttribute("mensagem", "Logado com sucesso");
             res.sendRedirect("uploadvideo");
