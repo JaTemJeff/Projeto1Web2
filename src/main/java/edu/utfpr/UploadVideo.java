@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.websocket.Session;
 import org.postgresql.util.PSQLException;
+import org.postgresql.util.PSQLState;
 
 @WebServlet(urlPatterns="/uploadvideo")
 @MultipartConfig(fileSizeThreshold=1024*1024*2,
@@ -83,20 +84,18 @@ public class UploadVideo extends HttpServlet {
         path = str.toString();
         System.out.println(path);
         InputStream in = part.getInputStream();
-        
-        if (part.getContentType().equals("video/mp4")) {
-            Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
-            nome_video = nome_video.split("\\.")[0];
-            ConexaoBD conexao = new ConexaoBD();
-            try{
+        try {
+            if (part.getContentType().equals("video/mp4")) {
+                Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
+                nome_video = nome_video.split("\\.")[0];
+                ConexaoBD conexao = new ConexaoBD();
                 conexao.salvarVideo(nome_video);
-                
-            }catch (Exception e){
-                res.getWriter().println("<script>alert(\"O nome do video já existe.\");</script>");
             }
+            part.delete(); 
+            res.sendRedirect("uploadvideo");
+        } catch (Exception e){
+            res.getWriter().println("<script>alert(\"Erro inesperado, tente novamente!\");</script>");    
         }
-        part.delete();
-        res.sendRedirect("uploadvideo");
-   }
-
+    }
 }
+
