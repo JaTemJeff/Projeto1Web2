@@ -40,7 +40,6 @@ public class login extends HttpServlet {
         writer.println("        <form style=\"text-align:center;\" action=\"login\" method=\"POST\">");
         writer.println("            <label for=\"usuario\">Usuario:</label>");
         writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
-        writer.println("<br/>");
         writer.println("            <label for=\"senha\">Senha:</label>");
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\" required>");
         writer.println("<br/>");
