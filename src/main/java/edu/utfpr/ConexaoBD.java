@@ -75,7 +75,7 @@ public class ConexaoBD {
             throw e;
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
