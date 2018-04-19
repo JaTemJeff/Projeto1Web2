@@ -65,15 +65,17 @@ public class ConexaoBD {
         }
     }
     
-    public void salvarVideo(String nome){
+    public void salvarVideo(String nome) throws PSQLException{
         String sql = "insert into Video (titulo) values (?);";
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, nome);
             st.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, ex);
-            boolean verificaEx = true; 
+        }catch (PSQLException e) {
+            throw e;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     

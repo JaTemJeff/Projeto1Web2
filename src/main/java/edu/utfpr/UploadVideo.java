@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -93,8 +94,16 @@ public class UploadVideo extends HttpServlet {
         if (part.getContentType().equals("video/mp4")) {
             Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
             nome_video = nome_video.split("\\.")[0];
-            ConexaoBD conexao = new ConexaoBD();
-            conexao.salvarVideo(nome_video);
+            
+            try {
+                ConexaoBD conexao = new ConexaoBD();
+                conexao.salvarVideo(nome_video);
+                
+            } catch (PSQLException ex) {
+                res.getWriter().println("<script>alert(\"Nome do video ja existe!\");</script>");
+            } catch (SQLException e){
+                res.getWriter().println("<script>alert(\"Um erro inesperado aconteceu!\");</script>");
+            }
         }
         part.delete(); 
         res.sendRedirect("uploadvideo");  
