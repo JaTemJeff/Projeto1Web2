@@ -38,10 +38,16 @@ public class login extends HttpServlet {
         writer.println("    <font color=\"#FAFAFA\">");
         writer.println("        <h1 style=\"text-align:center;\">Login</h1>");
         writer.println("        <form style=\"text-align:center;\" action=\"login\" method=\"POST\">");
+        writer.println("            <label for=\"usuario\">Usuario:</label>");
         writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
+        writer.println("<br/>");
+        writer.println("            <label for=\"senha\">Senha:</label>");
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\" required>");
+        writer.println("<br/>");
         writer.println("            <input type=\"submit\" value=\"logar\">");
         writer.println("        </form>");
+        writer.println("<br/>");
+        writer.println("<br/>");
         writer.println("        <form style=\"text-align:center;\" action=\"cadastro\" method=\"GET\">");
         writer.println("            <input type=\"submit\" value=\"Cadastro\">");
         writer.println("        </form>");
