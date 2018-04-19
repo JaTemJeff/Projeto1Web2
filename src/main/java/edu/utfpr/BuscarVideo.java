@@ -33,7 +33,10 @@ public class BuscarVideo extends HttpServlet {
             writer.println("            <input type=\"text\" name=\"arquivo\" value=\"\" required>");
             writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
             writer.println("        </form>");
-            if (request.getParameter("nome") != null){
+            if (request.getParameter("nome") != null && 
+                        request.getParameter("nome").equals("naoencontrado")) {
+                response.getWriter().println("<script>alert(\"Video nao encontrado!\");</script>");
+            } else if (request.getParameter("nome") != null){
             String video = request.getParameter("nome").toString();
                 writer.println("<ul>");
                 writer.println("<li>"+
@@ -41,9 +44,6 @@ public class BuscarVideo extends HttpServlet {
                     "<source src=\"uploads/" + video + ".mp4\" type=\"video/mp4\">"+
                 "</video></li>");
                 writer.println("</ul>");
-            } else if (request.getParameter("nome") != null && 
-                        request.getParameter("nome").equals("naoencontrado")) {
-                response.getWriter().println("<script>alert(\"Video nao encontrado!\");</script>");
             }
             writer.println("        <form style=\"text-align:center;\"action=\"listavideos\" method=\"GET\">");
             writer.println("            <input type=\"submit\" value=\"Listar videos\">");
