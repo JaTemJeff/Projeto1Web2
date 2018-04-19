@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.websocket.Session;
+import org.postgresql.util.PSQLException;
 
 @WebServlet(urlPatterns="/uploadvideo")
 @MultipartConfig(fileSizeThreshold=1024*1024*2,
@@ -82,11 +83,17 @@ public class UploadVideo extends HttpServlet {
         path = str.toString();
         System.out.println(path);
         InputStream in = part.getInputStream();
+        
         if (part.getContentType().equals("video/mp4")) {
             Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
             nome_video = nome_video.split("\\.")[0];
             ConexaoBD conexao = new ConexaoBD();
-            conexao.salvarVideo(nome_video);
+            try{
+                conexao.salvarVideo(nome_video);
+                
+            }catch (Exception e){
+                res.getWriter().println("<script>alert(\"O nome do video já existe.\");</script>");
+            }
         }
         part.delete();
         res.sendRedirect("uploadvideo");
