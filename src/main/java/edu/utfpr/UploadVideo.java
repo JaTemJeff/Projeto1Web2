@@ -40,11 +40,14 @@ public class UploadVideo extends HttpServlet {
         HttpSession session = req.getSession();
         
         if (req.getParameter("save") != null) {
-            if (req.getParameter("save").equals("false")) {
-                res.getWriter().println("<script>alert(\"Nome do video já existe!\");</script>");
+            if (req.getParameter("nomeexiste").equals("true")) {
+                res.getWriter().println("<script>alert(\"Nome do video existente!\");</script>");
             }
-            else  if (req.getParameter("save2").equals("false")){
+            else  if (req.getParameter("erroinesperado").equals("true")){
                 res.getWriter().println("<script>alert(\"Erro inesperado!\");</script>");
+            }
+            else if (req.getParameter("sucesso").equals("true")){
+                res.getWriter().println("<script>alert(\"Video salvo com sucesso!\");</script>");
             }
         }
         
@@ -104,13 +107,13 @@ public class UploadVideo extends HttpServlet {
                 conexao.salvarVideo(nome_video);
                 
             } catch (PSQLException ex) {
-                res.sendRedirect("uploadvideo?save=false");
+                res.sendRedirect("uploadvideo?nomeexite=true");
             } catch (SQLException e){
-                res.sendRedirect("uploadvideo?save2=false");
+                res.sendRedirect("uploadvideo?erroinesperado=true");
             }
         }
         part.delete(); 
-        res.sendRedirect("uploadvideo");  
+        res.sendRedirect("uploadvideo?sucesso=true");  
     }
 }
 
