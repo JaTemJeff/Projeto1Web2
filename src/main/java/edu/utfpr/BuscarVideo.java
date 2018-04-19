@@ -27,9 +27,10 @@ public class BuscarVideo extends HttpServlet {
             writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
             writer.println("        <title>Buscar Vídeo</title>");
             writer.println("    </head>");
-            writer.println("    <body>");
-            writer.println("        <h1>Buscar vídeo:</h1>");
-            writer.println("        <form action=\"buscarvideo\" method=\"POST\">");
+            writer.println("    <body bgcolor=\"#424242\">>");
+            writer.println("    <font color=\"#FAFAFA\">");
+            writer.println("        <h1 style=\"text-align:center;\">Buscar vídeo:</h1>");
+            writer.println("        <form style=\"text-align:center;\" action=\"buscarvideo\" method=\"POST\">");
             writer.println("            <input type=\"text\" name=\"arquivo\" value=\"\" required>");
             writer.println("            <input type=\"submit\" name=\"enviar\" value=\"submit\" />");
             writer.println("        </form>");
@@ -45,12 +46,13 @@ public class BuscarVideo extends HttpServlet {
                         request.getParameter("nome").equals("naoencontrado")) {
                 writer.println("<script>alert(\"Vídeo não encontrado\");</script>");
             }
-            writer.println("        <form action=\"listavideos\" method=\"GET\">");
+            writer.println("        <form style=\"text-align:center;\"action=\"listavideos\" method=\"GET\">");
             writer.println("            <input type=\"submit\" value=\"Listar vídeos\">");
             writer.println("        </form>");
-            writer.println("        <form action=\"uploadvideo\" method=\"GET\">");
+            writer.println("        <form style=\"text-align:center;\" action=\"uploadvideo\" method=\"GET\">");
             writer.println("            <input type=\"submit\" value=\"Upload de vídeos\">");
             writer.println("        </form>");
+            writer.println("    </font>");
             writer.println("    </body>");
             writer.println("</html>");
         } else {
