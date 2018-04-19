@@ -16,7 +16,6 @@ public class ListarVideo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
         PrintWriter writer = response.getWriter();
         HttpSession session = request.getSession();
         if (session.getAttribute("logado") != null){
@@ -25,8 +24,9 @@ public class ListarVideo extends HttpServlet {
             writer.println("    <head>");
             writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
             writer.println("        <title>Lista de videos</title>");
+            writer.println("        <link rel=\"stylesheet\" href=\"styles.css\">");
             writer.println("    </head>");
-            writer.println("        <h1>Lista de Vídeos:</h1>");
+            writer.println("        <h1>Lista de Videos:</h1>");
             writer.println("<ul>");
             ConexaoBD bd = new ConexaoBD();
             List<String> videos = bd.listarVideos();
@@ -38,13 +38,13 @@ public class ListarVideo extends HttpServlet {
                     "</video></li>");
                 }
             } else {
-                writer.println("<h3>Nenhum vídeo encontrado</h3>");
+                writer.println("<h3>Nenhum video encontrado</h3>");
             }
             writer.println("        <form action=\"buscarvideo\" method=\"GET\">");
-            writer.println("            <input type=\"submit\" value=\"Buscar vídeos\">");
+            writer.println("            <input type=\"submit\" value=\"Buscar videos\">");
             writer.println("        </form>");
             writer.println("        <form action=\"uploadvideo\" method=\"GET\">");
-            writer.println("            <input type=\"submit\" value=\"Upload de vídeos\">");
+            writer.println("            <input type=\"submit\" value=\"Upload de videos\">");
             writer.println("        </form>");
             writer.println("</ul>");
             writer.println("    </body>");

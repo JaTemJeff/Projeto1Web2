@@ -14,24 +14,30 @@ import org.postgresql.util.PSQLException;
 @WebServlet(name = "Cadastro", urlPatterns = {"/cadastro"})
 public class Cadastro extends HttpServlet {
     public void doGet (HttpServletRequest req,
-                       HttpServletResponse res) throws IOException {
-        PrintWriter writer = res.getWriter();        
+                       HttpServletResponse res) throws IOException {        
+        PrintWriter writer = res.getWriter();   
+        if (req.getParameter("save") != null) {
+            if (req.getParameter("save").equals("false")) {
+                res.getWriter().println("<script>alert(\"Usuario ja cadastrado, tente outro!\");</script>");
+            }
+            else if (req.getParameter("save").equals("email")) {
+                res.getWriter().println("<script>alert(\"Email invalido\");</script>");
+            }
+        }
         writer.println("<!DOCTYPE HTML>");
         writer.println("<html>");
         writer.println("    <head>");
         writer.println("        <meta http-equiv=\"content-type\"");
         writer.println("              content=\"text/html; charset=utf-8\"/>");
         writer.println("        <title>Cadastro</title>");
+        writer.println("        <link rel=\"stylesheet\" href=\"styles.css\">");
         writer.println("    </head>");
-        writer.println("    <body>");
-        if (req.getParameter("save") != null) {
-            if (req.getParameter("save").equals("false")) {
-                res.getWriter().println("<script>alert(\"Usuario ja cadastrado, tente outro!\");</script>");
-            }
-        }
+        writer.println("    <body>");        
         writer.println("        <h1>Cadastro</h1>");
         writer.println("        <form action=\"cadastro\" method=\"POST\">");
-        writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
+        writer.println("            <label for=\"usuario\">Email:</label>");
+        writer.println("            <input type=\"email\" name=\"usuario\" value=\"\" required>");
+        writer.println("            <label for=\"senha\">Senha:</label>");
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\" required>");
         writer.println("            <input type=\"submit\" value=\"cadastro\">");
         writer.println("        </form>");
@@ -45,7 +51,8 @@ public class Cadastro extends HttpServlet {
                         HttpServletResponse res) throws IOException {
         Usuario u = new Usuario();
         UsuarioDAO uDAO = new UsuarioDAO();
-        u.setNome(req.getParameter("usuario"));
+        String email = req.getParameter("usuario").toString();
+        u.setEmail(req.getParameter("usuario"));
         u.setSenha(req.getParameter("senha"));
         try {
             uDAO.salvaUsuario(u);

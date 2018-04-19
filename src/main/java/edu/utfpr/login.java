@@ -33,23 +33,20 @@ public class login extends HttpServlet {
         writer.println("        <meta http-equiv=\"content-type\"");
         writer.println("              content=\"text/html; charset=utf-8\"/>");
         writer.println("        <title>Login</title>");
+        writer.println("        <link rel=\"stylesheet\" href=\"styles.css\">");
         writer.println("    </head>");
-        writer.println("    <body bgcolor=\"#424242\">");     
-        writer.println("    <font color=\"#FAFAFA\">");
-        writer.println("        <h1 style=\"text-align:center;\">Login</h1>");
-        writer.println("        <form style=\"text-align:center;\" action=\"login\" method=\"POST\">");
-        writer.println("            <label for=\"usuario\">Usuario:</label>");
-        writer.println("            <input type=\"text\" name=\"usuario\" value=\"\" required>");
+        writer.println("    <body>");
+        writer.println("        <h1>Login</h1>");
+        writer.println("        <form action=\"login\" method=\"POST\">");
+        writer.println("            <label for=\"usuario\">Email:</label>");
+        writer.println("            <input type=\"email\" name=\"usuario\" value=\"\" required>");
         writer.println("            <label for=\"senha\">Senha:</label>");
         writer.println("            <input type=\"password\" name=\"senha\" value=\"\" required>");
         writer.println("            <input type=\"submit\" value=\"logar\">");
         writer.println("        </form>");
-        writer.println("<br/>");
-        writer.println("<br/>");
-        writer.println("        <form style=\"text-align:center;\" action=\"cadastro\" method=\"GET\">");
+        writer.println("        <form action=\"cadastro\" method=\"GET\">");
         writer.println("            <input type=\"submit\" value=\"Cadastro\">");
         writer.println("        </form>");
-        writer.println("    </font>");
         writer.println("    </body>");
         writer.println("</html>");
     }
@@ -58,12 +55,11 @@ public class login extends HttpServlet {
                         HttpServletResponse res) throws IOException {
         Usuario u = new Usuario();
         UsuarioDAO uDAO = new UsuarioDAO();
-        u.setNome(req.getParameter("usuario"));
+        u.setEmail(req.getParameter("usuario"));
         u.setSenha(req.getParameter("senha"));
         try {
-            uDAO.buscarUsuarioNomeSenha(u.getNome(), u.getSenha());
+            uDAO.buscarUsuarioEmailSenha(u.getEmail(), u.getSenha());
             req.getSession().setAttribute("logado", new Boolean(true));
-            req.getSession().setAttribute("mensagem", "Logado com sucesso");
             res.sendRedirect("uploadvideo");
         } catch (Exception ex) {
             res.sendRedirect("login?existe=false");            
