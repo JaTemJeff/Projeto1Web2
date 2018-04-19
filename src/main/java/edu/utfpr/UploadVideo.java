@@ -38,6 +38,16 @@ public class UploadVideo extends HttpServlet {
                        HttpServletResponse res) throws IOException {
         PrintWriter writer = res.getWriter();
         HttpSession session = req.getSession();
+        
+        if (req.getParameter("save") != null) {
+            if (req.getParameter("save").equals("false")) {
+                res.getWriter().println("<script>alert(\"Nome do video já existe!\");</script>");
+            }
+            else  if (req.getParameter("save2").equals("false")){
+                res.getWriter().println("<script>alert(\"Erro inesperado!\");</script>");
+            }
+        }
+        
         if (session.getAttribute("logado") != null){
             writer.println("<!DOCTYPE HTML>");
             writer.println("<html>");
@@ -94,9 +104,9 @@ public class UploadVideo extends HttpServlet {
                 conexao.salvarVideo(nome_video);
                 
             } catch (PSQLException ex) {
-                res.getWriter().println("<script>alert(\"Nome do video ja existe!\");</script>");
+                res.sendRedirect("uploadvideo?save=false");
             } catch (SQLException e){
-                res.getWriter().println("<script>alert(\"Um erro inesperado aconteceu!\");</script>");
+                res.sendRedirect("uploadvideo?save2=false");
             }
         }
         part.delete(); 
