@@ -63,7 +63,6 @@ public class UploadVideo extends HttpServlet {
             writer.println("    </body>");
             writer.println("</html>");
         }else{
-            res.getWriter().println("<script>alert(\"Você precisa estar logado!\");</script>");
             res.sendRedirect("login");
         }
     }
@@ -85,18 +84,15 @@ public class UploadVideo extends HttpServlet {
         path = str.toString();
         System.out.println(path);
         InputStream in = part.getInputStream();
-        try {
-            if (part.getContentType().equals("video/mp4")) {
-                Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
-                nome_video = nome_video.split("\\.")[0];
-                ConexaoBD conexao = new ConexaoBD();
-                conexao.salvarVideo(nome_video);
-            }
-            part.delete(); 
-            res.sendRedirect("uploadvideo");
-        } catch (Exception e){
-            res.getWriter().println("<script>alert(\"Erro inesperado, tente novamente!\");</script>");    
+      
+        if (part.getContentType().equals("video/mp4")) {
+            Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
+            nome_video = nome_video.split("\\.")[0];
+            ConexaoBD conexao = new ConexaoBD();
+            conexao.salvarVideo(nome_video);
         }
+        part.delete(); 
+        res.sendRedirect("uploadvideo");  
     }
 }
 
