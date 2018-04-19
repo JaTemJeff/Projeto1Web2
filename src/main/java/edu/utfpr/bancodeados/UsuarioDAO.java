@@ -1,6 +1,6 @@
-package edu.utfpr.entidadesedao;
+package edu.utfpr.bancodeados;
 
-import edu.utfpr.ConexaoBD;
+import edu.utfpr.entidades.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

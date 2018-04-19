@@ -1,7 +1,7 @@
 package edu.utfpr;
 
-import edu.utfpr.entidadesedao.Usuario;
-import edu.utfpr.entidadesedao.UsuarioDAO;
+import edu.utfpr.entidades.Usuario;
+import edu.utfpr.bancodeados.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;

@@ -1,5 +1,7 @@
 package edu.utfpr;
 
+import edu.utfpr.bancodeados.ConexaoBD;
+import edu.utfpr.bancodeados.VideoBD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -62,7 +64,7 @@ public class BuscarVideo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nome_video = request.getParameter("arquivo").toString();
-        ConexaoBD bd = new ConexaoBD();
+        VideoBD bd = new VideoBD();
         boolean salvo = bd.buscarVideo(nome_video);
         if(salvo){
             response.sendRedirect("buscarvideo?nome=" + nome_video);

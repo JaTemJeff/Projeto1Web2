@@ -1,5 +1,7 @@
 package edu.utfpr;
 
+import edu.utfpr.bancodeados.ConexaoBD;
+import edu.utfpr.bancodeados.VideoBD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -28,14 +30,16 @@ public class ListarVideo extends HttpServlet {
             writer.println("    </head>");
             writer.println("        <h1>Lista de Videos:</h1>");
             writer.println("<ul>");
-            ConexaoBD bd = new ConexaoBD();
+            VideoBD bd = new VideoBD();
             List<String> videos = bd.listarVideos();
             if(videos != null){
                 for (String nome : videos) {
-                    writer.println("<li>"+
-                    "<video width=\"160\" height=\"120\" controls>"+
-                        "<source src=\"uploads/" + nome + ".mp4\" type=\"video/mp4\">"+
-                    "</video></li>");
+                    writer.println( "<li>"+
+                                        "<video width=\"160\" height=\"120\" controls>"+
+                                            "<source src=\"uploads/" + nome + ".mp4\" type=\"video/mp4\">"+
+                                        "</video>" +
+                                        "<h4>" + nome + "</h4>"+
+                                    "</li>");
                 }
             } else {
                 writer.println("<h3>Nenhum video encontrado</h3>");

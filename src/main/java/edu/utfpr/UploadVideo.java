@@ -1,5 +1,7 @@
  package edu.utfpr;
 
+import edu.utfpr.bancodeados.ConexaoBD;
+import edu.utfpr.bancodeados.VideoBD;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,9 +30,7 @@ import org.postgresql.util.PSQLState;
                  maxFileSize=1024*1024*50,
                  maxRequestSize=1024*1024*100)
 public class UploadVideo extends HttpServlet {
-    
-    private static final long serialVersionUID = 1L;
-    private int id = 0;
+
     private String path;
     private String nome_video; 
 
@@ -100,8 +100,8 @@ public class UploadVideo extends HttpServlet {
       
         if (part.getContentType().equals("video/mp4")) {
             try {
-                ConexaoBD conexao = new ConexaoBD();
-                conexao.salvarVideo(nome_video.split("\\.")[0]);
+                VideoBD bd = new VideoBD();
+                bd.salvarVideo(nome_video.split("\\.")[0]);
                 Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
                 
             } catch (PSQLException ex) {

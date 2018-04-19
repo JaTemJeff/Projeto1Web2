@@ -1,4 +1,4 @@
-package edu.utfpr.entidadesedao;
+package edu.utfpr.entidades;
 
 public class Usuario {
     private String email;
