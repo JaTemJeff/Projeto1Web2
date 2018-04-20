@@ -32,7 +32,7 @@ public class ListarVideo extends HttpServlet {
             writer.println("<ul>");
             VideoBD bd = new VideoBD();
             List<String> videos = bd.listarVideos();
-            if(videos != null){
+            if(!videos.isEmpty()){
                 for (String nome : videos) {
                     writer.println( "<li>"+
                                         "<video width=\"160\" height=\"120\" controls>"+
