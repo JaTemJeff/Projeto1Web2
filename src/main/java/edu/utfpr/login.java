@@ -60,6 +60,8 @@ public class login extends HttpServlet {
         try {
             uDAO.buscarUsuarioEmailSenha(u.getEmail(), u.getSenha());
             req.getSession().setAttribute("logado", new Boolean(true));
+            req.getSession().setAttribute("usuario", u.getEmail());
+
             res.sendRedirect("uploadvideo");
         } catch (Exception ex) {
             res.sendRedirect("login?existe=false");            
