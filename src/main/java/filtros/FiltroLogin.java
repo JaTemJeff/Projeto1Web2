@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebFilter("/*")
 public class FiltroLogin implements Filter {
+    
+    @Override
+        public void init(FilterConfig filterConfig) throws ServletException {}
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws ServletException, IOException {    
@@ -28,5 +31,6 @@ public class FiltroLogin implements Filter {
         }
     }
 
-    // ...
+     @Override
+        public void destroy() {}
 }
