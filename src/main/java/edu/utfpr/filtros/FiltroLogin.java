@@ -1,6 +1,7 @@
 package edu.utfpr.filtros;
 
 import java.io.IOException;
+import java.util.Arrays;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -23,12 +24,19 @@ public class FiltroLogin implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
+        String path = request.getRequestURI();
+        if(path.endsWith(".css")){
+          chain.doFilter(request,response);
+        }
         String loginURI = request.getContextPath() + "/login";
+        String cadastroURI = request.getContextPath()+ "/cadastro";
+
 
         boolean loggedIn = session != null && session.getAttribute("usuario") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
+        boolean cadastroRequest = request.getRequestURI().equals(cadastroURI);
 
-        if (loggedIn || loginRequest) {
+        if (loggedIn || loginRequest || cadastroRequest) {
             chain.doFilter(request, response);
         } else {
             response.sendRedirect(loginURI);
