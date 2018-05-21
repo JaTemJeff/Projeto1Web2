@@ -1,4 +1,4 @@
-package filtros;
+package edu.utfpr.filtros;
 
 import java.io.IOException;
 import javax.servlet.Filter;

@@ -6,7 +6,7 @@
     <display-name>Upload with servlets example 01</display-name>
     <filter>
             <filter-name>FiltroLogin</filter-name>
-            <filter-class>edu.utfpr.filtros</filter-class>
+            <filter-class>edu.utfpr.filtros.FiltroLogin</filter-class>
         </filter>
 
         <filter-mapping>
