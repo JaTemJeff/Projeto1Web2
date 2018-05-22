@@ -27,7 +27,9 @@ public class FiltroLinguagens implements Filter{
         }
         Locale local = request.getLocale();
         response.setLocale(local);
-        
+        System.out.println(local);
+        response.setCharacterEncoding("UTF-8");
+        response.sendRedirect(path);
     }
 
     public void destroy() {
