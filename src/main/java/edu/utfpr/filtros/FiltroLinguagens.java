@@ -14,28 +14,24 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebFilter("/*")
 public class FiltroLinguagens implements Filter{
-
-    public void init(FilterConfig filterConfig) throws ServletException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {}
+    
+    @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws ServletException, IOException {    
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         String path = request.getRequestURI();
-        if(path.endsWith(".css")){
-          chain.doFilter(request,response);
-        }
+        System.out.println(path);
         Locale local = request.getLocale();
         response.setLocale(local);
         System.out.println(local);
         response.setCharacterEncoding("UTF-8");
-        response.sendRedirect(path);
+        chain.doFilter(request, response);
     }
-
-    public void destroy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     
+    @Override
+    public void destroy() {}
+
 }

@@ -13,8 +13,8 @@
         <filter-class>edu.utfpr.filtros.FiltroLinguagens</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>FiltroLogin</filter-name>
         <filter-name>FiltroLinguagens</filter-name>
+        <filter-name>FiltroLogin</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>
