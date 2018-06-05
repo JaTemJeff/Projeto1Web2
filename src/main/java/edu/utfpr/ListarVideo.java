@@ -42,7 +42,7 @@ public class ListarVideo extends HttpServlet {
                                     "</li>");
                 }
             } else {
-                writer.println("<h3>Nenhum video encontrado</h3>");
+                writer.println("<h3>Video encontrado</h3>");
             }
             writer.println("        <form action=\"buscarvideo\" method=\"GET\">");
             writer.println("            <input type=\"submit\" value=\"Buscar videos\">");
