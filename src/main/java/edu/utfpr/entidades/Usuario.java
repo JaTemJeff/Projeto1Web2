@@ -1,9 +1,12 @@
 package edu.utfpr.entidades;
 
 public class Usuario {
+    @NotNull @Email
     private String email;
+    @NotNull @Password
     private String senha;
 
+    
     public String getEmail() {
         return email;
     }
