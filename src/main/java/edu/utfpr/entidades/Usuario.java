@@ -1,12 +1,15 @@
 package edu.utfpr.entidades;
 
+import javax.validation.constraints.NotNull;
+
 public class Usuario {
-    @NotNull @Email
+    
+    @NotNull(message = "Nome não pode ser nulo")
     private String email;
-    @NotNull @Password
+    
+    @NotNull(message = "Senha não pode ser nulo")
     private String senha;
 
-    
     public String getEmail() {
         return email;
     }
