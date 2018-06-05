@@ -26,24 +26,25 @@ public class FiltroLogin implements Filter {
         HttpSession session = request.getSession(false);
         String path = request.getRequestURI();
         System.out.println(path);
-        if(path.endsWith(".css")){
-          chain.doFilter(request,response);
-        }
         String loginURI = request.getContextPath() + "/login";
+        System.out.println(loginURI);
         String cadastroURI = request.getContextPath()+ "/cadastro";
 
 
         boolean loggedIn = session != null && session.getAttribute("usuario") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
         boolean cadastroRequest = request.getRequestURI().equals(cadastroURI);
+        boolean cssRequest = path.endsWith(".css");
 
-        if (loggedIn || loginRequest || cadastroRequest) {
+        if (loggedIn || loginRequest || cadastroRequest || cssRequest) {
+            System.out.println("true");
             chain.doFilter(request, response);
         } else {
+            System.out.println("false");
             response.sendRedirect(loginURI);
         }
     }
 
-     @Override
-        public void destroy() {}
+    @Override
+    public void destroy() {}
 }

@@ -5,16 +5,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>${bundle.getString("mensagem_cadastro")}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css" >
+        <link rel="stylesheet" type="text/css" href="styles.css" >
     </head>
     <body>
         <h1>${bundle.getString("mensagem_login")}</h1>
         <form id='login-form' action="cadstro" method='POST'>
             <label>${bundle.getString("mensagem_email")}</label>
-            <input type="text" name="usuario" required>
+            <input type="email" name="usuario" required>
             <label>${bundle.getString("mensagem_senha")}</label>
             <input type="password" name="senha" required>
-            <input type="submit" value="${bundle.getString("mensagem_cadastro")}">");
+            <input type="submit" value="${bundle.getString("mensagem_cadastro")}">
         </form>
         <form action="login" method="GET">
             <input type="submit" value="${bundle.getString("mensagem_voltar")}">

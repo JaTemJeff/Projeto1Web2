@@ -17,7 +17,7 @@ public class UsuarioDAO {
     public void salvaUsuario (Usuario u) throws PSQLException{
         try {
             con = bd.getConnection();
-            PreparedStatement st = st = con.prepareStatement("INSERT INTO Usuario (email, senha) " +"VALUES (?, ?);");
+            PreparedStatement st = con.prepareStatement("INSERT INTO Usuario (email, senha) " + "VALUES (?, ?);");
             st.setString(1, u.getEmail());
             st.setString(2, u.getSenha());
             st.execute();
