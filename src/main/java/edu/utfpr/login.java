@@ -36,6 +36,7 @@ public class login extends HttpServlet {
 
             response.sendRedirect("uploadvideo");
         } catch (Exception ex) {
+            System.out.println(ex);
             response.sendRedirect("login");            
         }
     }
