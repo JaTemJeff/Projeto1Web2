@@ -16,9 +16,10 @@
             <c:when test="${param.nome == 'naoencontado'}">
                 <script>alert("Video nao encontrado!");</script>
             </c:when>
-            <c:when test="${param.nome != null}">  
+            <c:when test="${param.nome == null}">  
             </c:when>
             <c:otherwise>
+                <p>${param.nome}</p>
                 <ul>
                     <li>
                         <video width="640" height="560" controls>"+
