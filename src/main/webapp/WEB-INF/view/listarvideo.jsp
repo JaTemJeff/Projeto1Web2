@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,7 +9,6 @@
     </head>
     <body>
          <h1>${bundle.getString("lista_de_videos")}</h1>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <c:forEach items="${videos}" var="listVideos">
             <ul>
                  <li>

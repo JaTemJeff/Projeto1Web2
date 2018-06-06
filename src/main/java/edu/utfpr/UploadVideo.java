@@ -32,53 +32,11 @@ import org.postgresql.util.PSQLState;
 public class UploadVideo extends HttpServlet {
 
     private String path;
-    @NotNull(message = "Nome do vÌdeo n„o pode ser nulo")
+    @NotNull(message = "Nome do v√≠deo n√£o pode ser nulo")
     private String nome_video; 
 
-    public void doGet (HttpServletRequest req,
-                       HttpServletResponse res) throws IOException {
-        PrintWriter writer = res.getWriter();
-        HttpSession session = req.getSession();
-        
-        if (req.getParameter("sucesso") != null) {
-            if (req.getParameter("sucesso").equals("false")) {
-                res.getWriter().println("<script>alert(\"Nome do video existente!\");</script>");
-            } else if (req.getParameter("sucesso").equals("true")){
-                res.getWriter().println("<script>alert(\"Video salvo com sucesso!\");</script>");
-            }
-        }
-        if (req.getParameter("erroinesperado") != null &&
-            req.getParameter("erroinesperado").equals("true")){
-                res.getWriter().println("<script>alert(\"Erro inesperado!\");</script>");
-        }
-        
-        if (session.getAttribute("logado") != null){
-            writer.println("<!DOCTYPE HTML>");
-            writer.println("<html>");
-            writer.println("    <head>");
-            writer.println("        <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
-            writer.println("        <title>Upload de Video</title>");
-            writer.println("        <link rel=\"stylesheet\" href=\"styles.css\">");
-            writer.println("    </head>");
-            writer.println("    <body>");
-            writer.println("        <h1>Enviar videos: (.mp4)</h1>");
-            writer.println("        <form action=\"uploadvideo\" method=\"POST\"");
-            writer.println("                          accept-charset=\"utf-8\"");
-            writer.println("                          enctype=\"multipart/form-data\">");
-            writer.println("            <input type=\"file\" name=\"arquivo\" value=\"\" required />");
-            writer.println("            <input type=\"submit\" name=\"enviar\" value=\"enviar\" />");
-            writer.println("        </form>");
-            writer.println("        <form style=\"text-align:center;\" action=\"buscarvideo\" method=\"GET\">");
-            writer.println("            <input type=\"submit\" value=\"Buscar videos\">");
-            writer.println("        </form>");
-            writer.println("        <form style=\"text-align:center;\" action=\"listavideos\" method=\"GET\">");
-            writer.println("            <input type=\"submit\" value=\"Listar videos\">");
-            writer.println("        </form>");
-            writer.println("    </body>");
-            writer.println("</html>");
-        }else{
-            res.sendRedirect("login");
-        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("WEB-INF/view/cadastro.jsp").include(request, response);
     }
 
     public void doPost (HttpServletRequest req,
@@ -106,6 +64,7 @@ public class UploadVideo extends HttpServlet {
                 Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
                 
             } catch (PSQLException ex) {
+                req.setAttribute("nomecadastrado", "Nome de video ja cadastrado");
                 res.sendRedirect("uploadvideo?sucesso=false");
             } catch (SQLException e){
                 res.sendRedirect("uploadvideo?erroinesperado=true");
