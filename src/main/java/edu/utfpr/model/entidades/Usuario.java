@@ -27,7 +27,7 @@ public class Usuario {
     }
 
     public void setSenha(String senha) throws Exception {
-        if (email == null)
+        if (senha == null)
             throw new Exception ("Senha não foi informada!");
         else    
             this.senha = senha;
