@@ -14,15 +14,22 @@ public class Usuario {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) throws Exception {
+        
+        if (email == null)
+            throw new Exception ("Email não foi informado!");
+        else    
+            this.email = email;
     }
 
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSenha(String senha) throws Exception {
+        if (email == null)
+            throw new Exception ("Senha não foi informada!");
+        else    
+            this.senha = senha;
     }
 }
