@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${bundle.getString("mensagem_cadstro")}</title>
+        <title>${bundle.getString("mensagem_cadastro")}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css" >
     </head>
@@ -14,10 +14,10 @@
             <input type="text" name="usuario" required>
             <label>${bundle.getString("mensagem_senha")}</label>
             <input type="password" name="senha" required>
-            <input type=\"submit\" value=\"${bundle.getString("mensagem_cadastro")}\">");
+            <input type="submit" value="${bundle.getString("mensagem_cadastro")}">");
         </form>
-        <form action=\"login\" method=\"GET\">
-            <input type=\"submit\" value=\"${bundle.getString("mensagem_voltar")}\">
+        <form action="login" method="GET">
+            <input type="submit" value="${bundle.getString("mensagem_voltar")}">
         </form>
     </body>
 </html>
