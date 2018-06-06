@@ -25,6 +25,7 @@ public class FiltroLogin implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
         String path = request.getRequestURI();
+        System.out.println(path);
         if(path.endsWith(".css")){
           chain.doFilter(request,response);
         }

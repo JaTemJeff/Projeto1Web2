@@ -14,10 +14,10 @@
             <input type="text" name="usuario" required>
             <label>${bundle.getString("mensagem_senha")}</label>
             <input type="password" name="senha" required>
-            <input type=\"submit\" value=\"${bundle.getString("mensagem_login")}\">");
+            <input type="submit" value="${bundle.getString("mensagem_login")}">
         </form>
         <form id='cadastro-form' action="cadastro" method='GET'>
-            <input type=\"submit\" value=\"${bundle.getString("mensagem_cadastro")}\">
+            <input type="submit" value="${bundle.getString("mensagem_cadastro")}">
         </form>
         <script>
     </body>
