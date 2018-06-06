@@ -10,10 +10,10 @@
         <h1>${bundle.getString("buscar_videos")}:</h1>
         <form action="buscarvideo" method="POST">
             <input type="text" name="arquivo" value="" required>
-            <input type="submit" name="enviar" value="buscar" />
+            <input type="submit" name="enviar" value="${bundle.getString("mensagem_buscar")}" />
         </form>
         <c:choose>
-            <c:when test="${naoencontrado != null}">
+            <c:when test="${not empty naoencontrado}">
                 <script>alert("Video nao encontrado!");</script>
             </c:when>
             <c:when test="${param.nome == null}">  
