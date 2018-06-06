@@ -13,7 +13,7 @@
             <input type="submit" name="enviar" value="buscar" />
         </form>
         <c:choose>
-            <c:when test="${naoencontrado == 'naoencontrado'}">
+            <c:when test="${naoencontrado != null}">
                 <script>alert("Video nao encontrado!");</script>
             </c:when>
             <c:when test="${param.nome == null}">  

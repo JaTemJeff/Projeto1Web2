@@ -32,7 +32,8 @@ public class BuscarVideo extends HttpServlet {
         if(salvo){
             response.sendRedirect("buscarvideo?nome=" + nome_video);
         } else {
-            request.setAttribute("naoencontrado", "naoencontrado");
+            String naoencontrado = "Video nao encontrado";
+            request.setAttribute("naoencontrado", naoencontrado);
             response.sendRedirect("buscarvideo");
         }
     }
