@@ -19,7 +19,7 @@ public class BuscarVideo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/buscarvideo.jsp").include(request, response);
+        request.getRequestDispatcher("WEB-INF/view/buscarvideo.jsp").include(request, response);
     }
 
     @Override

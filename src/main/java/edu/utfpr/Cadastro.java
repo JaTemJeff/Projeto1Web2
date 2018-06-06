@@ -15,7 +15,7 @@ import org.postgresql.util.PSQLException;
 public class Cadastro extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
-        request.getRequestDispatcher("WEB-INF/cadastro.jsp").include(request, response);
+        request.getRequestDispatcher("WEB-INF/view/cadastro.jsp").include(request, response);
     }
     
     public void doPost (HttpServletRequest req,

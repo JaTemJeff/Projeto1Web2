@@ -17,13 +17,13 @@ import javax.servlet.http.HttpSession;
 public class ListarVideo extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException { 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
         
         VideoBD bd = new VideoBD();
         ArrayList<String> listVideos = (ArrayList<String>) bd.listarVideos();
         
         
         request.setAttribute("videos", listVideos);
+        request.getRequestDispatcher("WEB-INF/view/listarvideo.jsp").include(request, response);
     }
 }
