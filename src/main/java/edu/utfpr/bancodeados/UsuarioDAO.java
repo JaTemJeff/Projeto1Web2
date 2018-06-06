@@ -1,5 +1,6 @@
 package edu.utfpr.bancodeados;
 
+import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import edu.utfpr.entidades.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -60,6 +61,7 @@ public class UsuarioDAO {
             con.close();
             return u;
         } else {
+            printStackTrace();
             throw new Exception ("Usuario errado!");
         }
     }

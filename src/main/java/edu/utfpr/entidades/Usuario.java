@@ -4,10 +4,10 @@ import javax.validation.constraints.NotNull;
 
 public class Usuario {
     
-    @NotNull(message = "Nome n„o pode ser nulo")
+    @NotNull(message = "Nome n√£o pode ser nulo")
     private String email;
     
-    @NotNull(message = "Senha n„o pode ser nulo")
+    @NotNull(message = "Senha n√£o pode ser nulo")
     private String senha;
 
     public String getEmail() {

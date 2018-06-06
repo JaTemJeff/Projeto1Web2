@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="styles.css" >
     </head>
     <body>
-        <h1>${bundle.getString("mensagem_login")}</h1>
+        <h1>${bundle.getString("mensagem_cadastro")}</h1>
         <form id='login-form' action="cadastro" method='POST'>
             <label>${bundle.getString("mensagem_email")}</label>
             <input type="email" name="usuario" required>
