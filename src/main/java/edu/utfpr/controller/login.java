@@ -27,8 +27,16 @@ public class login extends HttpServlet {
         UsuarioDAO uDAO = new UsuarioDAO();
          ResourceBundle bundle = (ResourceBundle) request.getAttribute("bundle");
         
-        u.setEmail(request.getParameter("usuario"));
-        u.setSenha(request.getParameter("senha"));
+        try {
+            u.setEmail(request.getParameter("usuario"));
+        } catch (Exception ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            u.setSenha(request.getParameter("senha"));
+        } catch (Exception ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             uDAO.buscarUsuarioEmailSenha(u.getEmail(), u.getSenha());
             request.getSession().setAttribute("logado", new Boolean(true));
