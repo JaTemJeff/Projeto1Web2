@@ -28,6 +28,11 @@ public class Cadastro extends HttpServlet {
         
         String email = req.getParameter("usuario");
         String senha = req.getParameter("senha");
+        
+        if(email == null || email == "" || senha == null || senha == ""){
+            req.setAttribute("campos_vazios", bundle.getString("campos_vazios"));
+            req.getRequestDispatcher("WEB-INF/view/cadastro.jsp").include(req, res);
+        }
         u.setEmail(email);
         u.setSenha(senha);
         try {

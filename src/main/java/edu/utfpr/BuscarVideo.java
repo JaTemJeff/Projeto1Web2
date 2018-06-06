@@ -37,7 +37,7 @@ public class BuscarVideo extends HttpServlet {
         } else {
             String naoencontrado = "Video nao encontrado";
             request.setAttribute("naoencontrado", bundle.getString("mensagem_inexistente"));
-            request.getRequestDispatcher("WEB-INF/view/cadastro.jsp").include(request, response);
+            request.getRequestDispatcher("WEB-INF/view/buscarvideo.jsp").include(request, response);
         }
     }
 

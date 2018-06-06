@@ -12,7 +12,7 @@
                             accept-charset="utf-8"
                             enctype="multipart/form-data">
             <input type="file" name="arquivo" value="" required />
-            <input type="submit" name="enviar" value="${bundle.getString("buscar_videos")}" />
+            <input type="submit" name="enviar" value="${bundle.getString("enviar_videos")}" />
         </form>
         <form style="text-align:center" action="buscarvideo" method="GET">
             <input type="submit" value="${bundle.getString("buscar_videos")}">
