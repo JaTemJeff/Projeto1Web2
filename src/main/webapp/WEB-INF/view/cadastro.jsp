@@ -19,5 +19,7 @@
         <form action="login" method="GET">
             <input type="submit" value="${bundle.getString("mensagem_voltar")}">
         </form>
+        <label>${existente}</label>
+        <label>${inesperado}</label>
     </body>
 </html>

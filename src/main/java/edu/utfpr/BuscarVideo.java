@@ -26,15 +26,18 @@ public class BuscarVideo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String nome_video = request.getParameter("arquivo").toString();
         VideoBD bd = new VideoBD();
+        ResourceBundle bundle = (ResourceBundle) request.getAttribute("bundle");
+        
         boolean salvo = bd.buscarVideo(nome_video);
         if(salvo){
             response.sendRedirect("buscarvideo?nome=" + nome_video);
         } else {
             String naoencontrado = "Video nao encontrado";
-            request.setAttribute("naoencontrado", naoencontrado);
-            response.sendRedirect("buscarvideo");
+            request.setAttribute("naoencontrado", bundle.getString("mensagem_inexistente"));
+            request.getRequestDispatcher("WEB-INF/view/cadastro.jsp").include(request, response);
         }
     }
 

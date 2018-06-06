@@ -4,6 +4,7 @@ import edu.utfpr.entidades.Usuario;
 import edu.utfpr.bancodeados.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -24,6 +25,8 @@ public class login extends HttpServlet {
        
         Usuario u = new Usuario();
         UsuarioDAO uDAO = new UsuarioDAO();
+         ResourceBundle bundle = (ResourceBundle) request.getAttribute("bundle");
+        
         u.setEmail(request.getParameter("usuario"));
         u.setSenha(request.getParameter("senha"));
         try {
@@ -33,7 +36,6 @@ public class login extends HttpServlet {
 
             response.sendRedirect("uploadvideo");
         } catch (Exception ex) {
-            request.setAttribute("errologin", "Usuário ou senha errados!");
             response.sendRedirect("login");            
         }
     }

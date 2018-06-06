@@ -5,6 +5,7 @@ import edu.utfpr.entidades.Usuario;
 import edu.utfpr.bancodeados.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ResourceBundle;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,9 +21,11 @@ public class Cadastro extends HttpServlet {
     }
     
     public void doPost (HttpServletRequest req,
-                        HttpServletResponse res) throws IOException {
+                        HttpServletResponse res) throws IOException, ServletException {
         Usuario u = new Usuario();
         UsuarioDAO uDAO = new UsuarioDAO();
+        ResourceBundle bundle = (ResourceBundle) req.getAttribute("bundle");
+        
         String email = req.getParameter("usuario");
         String senha = req.getParameter("senha");
         u.setEmail(email);
@@ -31,10 +34,11 @@ public class Cadastro extends HttpServlet {
             uDAO.salvaUsuario(u);
             res.sendRedirect("login");
         } catch (PSQLException ex) {
-            req.setAttribute("cadastrado", "Usuário já cadastrado");
-            res.sendRedirect("cadastro");
+            req.setAttribute("existente", bundle.getString("usuario_existente"));
+            req.getRequestDispatcher("WEB-INF/view/cadastro.jsp").include(req, res);
         } catch (Exception e) {
-            printStackTrace();
+            req.setAttribute("inesperado", bundle.getString("mensagem_inesperado"));
+            req.getRequestDispatcher("WEB-INF/view/cadastro.jsp").include(req, res);
         }
     }
 

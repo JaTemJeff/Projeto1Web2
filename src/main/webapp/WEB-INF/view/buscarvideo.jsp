@@ -12,9 +12,8 @@
             <input type="text" name="arquivo" value="" required>
             <input type="submit" name="enviar" value="${bundle.getString("mensagem_buscar")}" />
         </form>
-        <script>alert(${naoencontrado});</script>
         <c:choose>
-            <c:when test="${not empty naoencontrado}">
+            <c:when test="${naoencontrado != null}">
                 <script>alert(${naoencontrado});</script>
             </c:when>
             <c:when test="${param.nome == null}">  
