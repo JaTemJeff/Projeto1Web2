@@ -22,7 +22,10 @@ public class FiltroLinguagens implements Filter{
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws ServletException, IOException {    
         ResourceBundle bundle = ResourceBundle.getBundle("messages", req.getLocale());
-
+        req.setCharacterEncoding("UTF-8");
+        res.setContentType("text/html;charset=UTF-8");
+        res.setCharacterEncoding("UTF-8");
+        chain.doFilter(req, res);
         req.setAttribute("bundle", bundle);
         chain.doFilter(req, res);
     }
