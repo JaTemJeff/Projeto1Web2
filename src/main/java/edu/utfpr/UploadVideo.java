@@ -36,7 +36,7 @@ public class UploadVideo extends HttpServlet {
     private String nome_video; 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/view/cadastro.jsp").include(request, response);
+        request.getRequestDispatcher("WEB-INF/view/uploadvideo.jsp").include(request, response);
     }
 
     public void doPost (HttpServletRequest req,
