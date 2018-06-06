@@ -8,7 +8,7 @@
     </head>
     <body>
          <h1>${bundle.getString("lista_de_videos")}</h1>
-         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <c:forEach items="${videos}" var="listVideos">
             <ul>
                  <li>
