@@ -13,7 +13,7 @@
             <ul>
                  <li>
                      <video width="160" height="120" controls>
-                         <source src="uploads/${videos}.mp4" type="video/mp4">
+                         <source src="uploads/${listVideos}.mp4" type="video/mp4">
                      </video>
                      <h4>${listVideos}</h4>
                  </li>     
