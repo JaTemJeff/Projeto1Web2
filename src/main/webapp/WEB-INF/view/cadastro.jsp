@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1>${bundle.getString("mensagem_login")}</h1>
-        <form id='login-form' action="cadstro" method='POST'>
+        <form id='login-form' action="cadastro" method='POST'>
             <label>${bundle.getString("mensagem_email")}</label>
             <input type="email" name="usuario" required>
             <label>${bundle.getString("mensagem_senha")}</label>
