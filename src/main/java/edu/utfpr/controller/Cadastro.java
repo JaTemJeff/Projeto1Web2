@@ -6,6 +6,8 @@ import edu.utfpr.model.bancodedados.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,8 +35,16 @@ public class Cadastro extends HttpServlet {
             req.setAttribute("campos_vazios", bundle.getString("campos_vazios"));
             req.getRequestDispatcher("WEB-INF/view/cadastro.jsp").include(req, res);
         }
-        u.setEmail(email);
-        u.setSenha(senha);
+        try {
+            u.setEmail(email);
+        } catch (Exception ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            u.setSenha(senha);
+        } catch (Exception ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             uDAO.salvaUsuario(u);
             res.sendRedirect("login");
