@@ -12,9 +12,10 @@
             <input type="text" name="arquivo" value="" required>
             <input type="submit" name="enviar" value="${bundle.getString("mensagem_buscar")}" />
         </form>
+        <script>alert(${naoencontrado});</script>
         <c:choose>
             <c:when test="${not empty naoencontrado}">
-                <script>alert("Video nao encontrado!");</script>
+                <script>alert(${naoencontrado});</script>
             </c:when>
             <c:when test="${param.nome == null}">  
             </c:when>
