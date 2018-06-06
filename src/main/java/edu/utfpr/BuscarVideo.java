@@ -5,6 +5,7 @@ import edu.utfpr.bancodeados.VideoBD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.util.ResourceBundle;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +32,8 @@ public class BuscarVideo extends HttpServlet {
         if(salvo){
             response.sendRedirect("buscarvideo?nome=" + nome_video);
         } else {
-            response.sendRedirect("buscarvideo?nome=naoencontrado");
+            request.setAttribute("naoencontrado", "naoencontrado");
+            response.sendRedirect("buscarvideo");
         }
     }
 
