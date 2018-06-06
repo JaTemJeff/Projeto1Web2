@@ -22,21 +22,18 @@ public class login extends HttpServlet {
      protected void doPost(HttpServletRequest request, HttpServletResponse response)  
                     throws ServletException, IOException {  
        
-        PrintWriter out = response.getWriter();
-
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
-        
         Usuario u = new Usuario();
+        UsuarioDAO uDAO = new UsuarioDAO();
+        u.setEmail(request.getParameter("usuario"));
+        u.setSenha(request.getParameter("senha"));
         try {
-            UsuarioDAO uDAO = new UsuarioDAO();
-            u = uDAO.buscarUsuarioEmailSenha(u.getEmail(), u.getSenha());
-            request.getSession().setAttribute("logado", true);
+            uDAO.buscarUsuarioEmailSenha(u.getEmail(), u.getSenha());
+            request.getSession().setAttribute("logado", new Boolean(true));
             request.getSession().setAttribute("usuario", u.getEmail());
 
             response.sendRedirect("uploadvideo");
         } catch (Exception ex) {
-            System.out.println(ex);
+            request.setAttribute("errologin", "Usuário ou senha errados!");
             response.sendRedirect("login");            
         }
     }

@@ -11,7 +11,7 @@
         <h1>${bundle.getString("mensagem_login")}</h1>
         <form id='login-form' action="login" method='POST'>
             <label>${bundle.getString("mensagem_email")}</label>
-            <input type="email" name="email" required>
+            <input type="email" name="usuario" required>
             <label>${bundle.getString("mensagem_senha")}</label>
             <input type="password" name="senha" required>
             <input type="submit" value="${bundle.getString("mensagem_login")}">
@@ -19,6 +19,5 @@
         <form id='cadastro-form' action="cadastro" method='GET'>
             <input type="submit" value="${bundle.getString("mensagem_cadastro")}">
         </form>
-        <script>
     </body>
 </html>
