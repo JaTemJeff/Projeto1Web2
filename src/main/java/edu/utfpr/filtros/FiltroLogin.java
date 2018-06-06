@@ -30,7 +30,7 @@ public class FiltroLogin implements Filter {
         System.out.println(loginURI);
         String cadastroURI = request.getContextPath()+ "/cadastro";
 
-
+        System.out.println(session.getAttribute("usuario"));
         boolean loggedIn = session.getAttribute("usuario") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
         boolean cadastroRequest = request.getRequestURI().equals(cadastroURI);
