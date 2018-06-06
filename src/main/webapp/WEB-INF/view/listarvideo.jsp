@@ -8,16 +8,17 @@
     </head>
     <body>
          <h1>${bundle.getString("lista_de_videos")}</h1>
-    <c:forEach items="${videos}" var="listVideos">
-        <ul>
-             <li>
-                 <video width="160" height="120" controls>
-                     <source src="uploads/${listVideos}.mp4" type="video/mp4">
-                 </video>
-                 <h4>${listVideos}</h4>
-             </li>     
-         </ul>
-    </c:forEach>
+         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+        <c:forEach items="${videos}" var="listVideos">
+            <ul>
+                 <li>
+                     <video width="160" height="120" controls>
+                         <source src="uploads/${videos}.mp4" type="video/mp4">
+                     </video>
+                     <h4>${listVideos}</h4>
+                 </li>     
+             </ul>
+        </c:forEach>
     <form action="buscarvideo" method="GET">
         <input type="submit" value="${bundle.getString("buscar_videos")}">
     </form>
