@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
-
+import javax.validation.constraints.NotNull;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -32,6 +32,7 @@ import org.postgresql.util.PSQLState;
 public class UploadVideo extends HttpServlet {
 
     private String path;
+    @NotNull(message = "Nome do vídeo não pode ser nulo")
     private String nome_video; 
 
     public void doGet (HttpServletRequest req,
