@@ -1,7 +1,7 @@
- package edu.utfpr;
+ package edu.utfpr.controller;
 
-import edu.utfpr.bancodeados.ConexaoBD;
-import edu.utfpr.bancodeados.VideoBD;
+import edu.utfpr.model.bancodedados.ConexaoBD;
+import edu.utfpr.model.bancodedados.VideoBD;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

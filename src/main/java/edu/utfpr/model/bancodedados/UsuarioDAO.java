@@ -1,6 +1,6 @@
-package edu.utfpr.bancodeados;
+package edu.utfpr.model.bancodedados;
 
-import edu.utfpr.entidades.Usuario;
+import edu.utfpr.model.entidades.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

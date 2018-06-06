@@ -1,8 +1,8 @@
-package edu.utfpr;
+package edu.utfpr.controller;
 
 import static com.sun.corba.se.impl.util.Utility.printStackTrace;
-import edu.utfpr.entidades.Usuario;
-import edu.utfpr.bancodeados.UsuarioDAO;
+import edu.utfpr.model.entidades.Usuario;
+import edu.utfpr.model.bancodedados.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ResourceBundle;

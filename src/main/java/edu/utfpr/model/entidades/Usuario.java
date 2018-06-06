@@ -1,4 +1,4 @@
-package edu.utfpr.entidades;
+package edu.utfpr.model.entidades;
 
 import javax.validation.constraints.NotNull;
 
