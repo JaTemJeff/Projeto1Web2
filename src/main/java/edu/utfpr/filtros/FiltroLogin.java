@@ -23,7 +23,7 @@ public class FiltroLogin implements Filter {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws ServletException, IOException {    
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
         String path = request.getRequestURI();
         System.out.println(path);
         String loginURI = request.getContextPath() + "/login";
@@ -31,7 +31,7 @@ public class FiltroLogin implements Filter {
         String cadastroURI = request.getContextPath()+ "/cadastro";
 
 
-        boolean loggedIn = session != null && session.getAttribute("usuario") != null;
+        boolean loggedIn = session.getAttribute("usuario") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
         boolean cadastroRequest = request.getRequestURI().equals(cadastroURI);
         boolean cssRequest = path.endsWith(".css");

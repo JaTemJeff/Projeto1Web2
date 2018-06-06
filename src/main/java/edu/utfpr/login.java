@@ -31,7 +31,7 @@ public class login extends HttpServlet {
         try {
             UsuarioDAO uDAO = new UsuarioDAO();
             u = uDAO.buscarUsuarioEmailSenha(u.getEmail(), u.getSenha());
-            request.getSession().setAttribute("logado", new Boolean(true));
+            request.getSession().setAttribute("logado", true);
             request.getSession().setAttribute("usuario", u.getEmail());
 
             response.sendRedirect("uploadvideo");
