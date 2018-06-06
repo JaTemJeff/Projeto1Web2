@@ -13,8 +13,10 @@
             <input type="submit" name="enviar" value="buscar" />
         </form>
         <c:choose>
-            <c:when test="${param.nome != null && param.nome == 'naoencontado'}">
+            <c:when test="${param.nome == 'naoencontado'}">
                 <script>alert("Video nao encontrado!");</script>
+            </c:when>
+            <c:when test="${param.nome != null}">  
             </c:when>
             <c:otherwise>
                 <ul>
