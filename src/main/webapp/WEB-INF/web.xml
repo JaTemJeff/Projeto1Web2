@@ -12,8 +12,4 @@
         <filter-name>FiltroLinguagens</filter-name>
         <filter-class>edu.utfpr.filtros.FiltroLinguagens</filter-class>
     </filter>
-    <filter-mapping>
-        <filter-name>FiltroLinguagens</filter-name>
-        <filter-name>FiltroLogin</filter-name>
-    </filter-mapping>
 </web-app>
