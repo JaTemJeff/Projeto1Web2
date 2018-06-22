@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.postgresql.util.PSQLException;
 
 
 public class VideoBD {
@@ -24,18 +23,15 @@ public class VideoBD {
         this.con = bd.getConnection();
     }
     
-    public void salvarVideo(Video video) throws PSQLException{
+    public void salvarVideo(Video video) throws SQLException{
         String sql = "insert into Video (titulo) values (?);";
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, video.getNome());
             st.execute();
             con.close();
-        }catch (PSQLException e) {
+        }catch (SQLException e) {
             throw e;
-        }
-        catch (SQLException e) {
-            Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
