@@ -1,5 +1,6 @@
 package edu.utfpr.model.bancodedados;
 
+import edu.utfpr.model.entidades.Video;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,16 +17,18 @@ public class VideoBD {
     private ConexaoBD bd;
     private Connection con;
     
+    Video video = new Video();
+    
     public VideoBD(){
         this.bd = new ConexaoBD();
         this.con = bd.getConnection();
     }
     
-    public void salvarVideo(String nome) throws PSQLException{
+    public void salvarVideo(Video video) throws PSQLException{
         String sql = "insert into Video (titulo) values (?);";
         try {
             PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, nome);
+            st.setString(1, video.getNome());
             st.execute();
             con.close();
         }catch (PSQLException e) {
@@ -36,20 +39,20 @@ public class VideoBD {
         }
     }
     
-    public boolean buscarVideo(String nome){
+    public Video buscarVideo(String nome){
         String sql = "SELECT * FROM Video WHERE titulo LIKE '" + nome + "';";
         try {
             PreparedStatement st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             con.close();
             if (rs.next())
-                return true;
+                return (Video) rs.getObject("titulo");
             else
-                return false;
+                return null;
         } catch (SQLException ex) {
             Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return null;
     }
     
     public List<String> listarVideos() {
