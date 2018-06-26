@@ -1,7 +1,7 @@
 package edu.utfpr.controller;
 
 import edu.utfpr.model.bancodedados.ConexaoBD;
-import edu.utfpr.model.bancodedados.VideoBD;
+import edu.utfpr.model.bancodedados.VideoModel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -28,7 +28,7 @@ public class BuscarVideo extends HttpServlet {
             throws ServletException, IOException {
         
         String nome_video = request.getParameter("arquivo").toString();
-        VideoBD bd = new VideoBD();
+        VideoModel bd = new VideoModel();
         ResourceBundle bundle = (ResourceBundle) request.getAttribute("bundle");
         
         boolean salvo = bd.buscarVideo(nome_video);

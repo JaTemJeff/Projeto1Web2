@@ -1,7 +1,7 @@
  package edu.utfpr.controller;
 
 import edu.utfpr.model.bancodedados.ConexaoBD;
-import edu.utfpr.model.bancodedados.VideoBD;
+import edu.utfpr.model.bancodedados.VideoModel;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -59,7 +59,7 @@ public class UploadVideo extends HttpServlet {
       
         if (part.getContentType().equals("video/mp4")) {
             try {
-                VideoBD bd = new VideoBD();
+                VideoModel bd = new VideoModel();
                 bd.salvarVideo(nome_video.split("\\.")[0]);
                 Files.copy(in, Paths.get(str.toString() + nome_video), StandardCopyOption.REPLACE_EXISTING);
                 

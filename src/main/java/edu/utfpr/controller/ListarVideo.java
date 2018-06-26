@@ -1,7 +1,7 @@
 package edu.utfpr.controller;
 
 import edu.utfpr.model.bancodedados.ConexaoBD;
-import edu.utfpr.model.bancodedados.VideoBD;
+import edu.utfpr.model.bancodedados.VideoModel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class ListarVideo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
         
-        VideoBD bd = new VideoBD();
+        VideoModel bd = new VideoModel();
         ArrayList<String> listVideos = (ArrayList<String>) bd.listarVideos();
         
         

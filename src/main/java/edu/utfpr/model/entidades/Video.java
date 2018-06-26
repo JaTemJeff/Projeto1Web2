@@ -1,31 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.utfpr.model.entidades;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
-/**
- *
- * @author Aluno
- */
-public class Video {
+@Entity
+public class Video implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
     
     @Id @GeneratedValue
-    private long id;
+    private int id;
     
-    @NotNull(message = "Nome não pode ser nulo")
     private String nome;
 
-    public long getId() {
+    public Video() {
+    }
+
+    public Video(String nome) {
+        this.nome = nome;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -33,11 +34,8 @@ public class Video {
         return nome;
     }
 
-    public void setNome(String nome) throws Exception {
-        if (nome == null)
-            throw new Exception ("Email não foi informado!");
-        else    
-            this.nome = nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
 }
