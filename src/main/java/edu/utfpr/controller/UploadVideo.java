@@ -1,6 +1,5 @@
  package edu.utfpr.controller;
 
-import edu.utfpr.model.bancodedados.ConexaoBD;
 import edu.utfpr.model.bancodedados.VideoModel;
 import java.io.File;
 import java.io.FileOutputStream;
