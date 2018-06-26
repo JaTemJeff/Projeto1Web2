@@ -5,62 +5,67 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
 import org.postgresql.util.PSQLException;
 
 public class UsuarioDAO {
-    private ConexaoBD bd;
-    private Connection con;
-    
-    public UsuarioDAO() {
-        bd = new ConexaoBD();
-    }
+ 
+
     public void salvaUsuario (Usuario u) throws PSQLException{
-        try {
-            con = bd.getConnection();
-            PreparedStatement st = con.prepareStatement("INSERT INTO Usuario (email, senha) " + "VALUES (?, ?);");
-            st.setString(1, u.getEmail());
-            st.setString(2, u.getSenha());
-            st.execute();
-            con.close();
-        }catch (PSQLException e) {
-            throw e;
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+        EntityManager em = EntityManagerPool.getEntityManager();
+        em.getTransaction().begin();
+            try{
+                em.persist(u);
+                em.flush();
+                em.getTransaction().commit();
+            } catch(Exception e){
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+                em.getTransaction().rollback();
+            }
     }
     public void excluirUsuario (Usuario u) throws Exception {
+        EntityManager em = EntityManagerPool.getEntityManager();
+        em.getTransaction().begin();
         try{
-            con = bd.getConnection();
-            PreparedStatement st = con.prepareStatement("DELETE FROM Usuario WHERE email LIKE '" + u.getEmail() + "';");
-            st.execute();
-            con.close();
-        } catch (Exception e) {
-            throw new Exception ("Email Inexistente");
+            em.remove(u);
+            em.getTransaction().commit();
+        }catch (PersistenceException px) {   
+        Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, px);
+        throw new PersistenceException(px.getMessage());  
+        }catch(Exception e){
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            em.getTransaction().rollback();
         }
     }
+    
     public void alterarUsuario (Usuario u, String email) throws Exception {
+        EntityManager em = EntityManagerPool.getEntityManager();
+        em.getTransaction().begin();
         try{
-            con = bd.getConnection();
-            PreparedStatement st = con.prepareStatement("UPDATE Usuario SET email = '"+ email +"' WHERE email LIKE '" + u.getEmail() + "';");
-            st.execute();
-            con.close();
-        } catch (Exception e) {
-            throw new Exception ("Email Inexistente");
+            em.merge(u);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            em.getTransaction().rollback();
         }
     }
     public Usuario buscarUsuarioEmailSenha(String email, String senha) throws Exception {
-        con = bd.getConnection();
-        PreparedStatement st = con.prepareStatement("SELECT * FROM Usuario WHERE email LIKE '" + email +"' AND senha LIKE '"+senha+"';");
-        ResultSet rs = st.executeQuery();
-        if (rs.next()){
-            Usuario u = new Usuario();
-            u.setEmail(rs.getString("email"));
-            u.setSenha(rs.getString("senha"));
-            con.close();
-            return u;
+        EntityManager em = EntityManagerPool.getEntityManager();
+        Usuario usuario = new Usuario();
+        em.getTransaction().begin();
+        try{
+            usuario = (Usuario) em.createQuery("SELECT u FROM Usuario u").getSingleResult();
+        } catch(Exception e){
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            em.getTransaction().rollback();
+        }
+        if(usuario.getEmail() == null){
+            throw new Exception("usuario n�o encontrado");
         } else {
-            throw new Exception ("Usuario errado!");
+            return usuario;
         }
     }
 }

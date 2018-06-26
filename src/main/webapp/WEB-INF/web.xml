@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xmlns="http://java.sun.com/xml/ns/javaee"
-     xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-     id="WebApp_ID" version="3.0">
+<web-app id="WebApp_ID" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <display-name>Upload with servlets example 01</display-name>
     <filter>
         <filter-name>FiltroLogin</filter-name>
         <filter-class>edu.utfpr.filtros.FiltroLogin</filter-class>
-    </filter>
-    <filter>
-        <filter-name>FiltroLinguagens</filter-name>
-        <filter-class>edu.utfpr.filtros.FiltroLinguagens</filter-class>
     </filter>
 </web-app>

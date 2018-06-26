@@ -1,8 +1,18 @@
 package edu.utfpr.model.entidades;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-public class Usuario {
+@Entity
+public class Usuario implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+
+    @Id @GeneratedValue
+    private int id;
     
     @NotNull(message = "Nome nÃ£o pode ser nulo")
     private String email;
@@ -17,7 +27,7 @@ public class Usuario {
     public void setEmail(String email) throws Exception {
         
         if (email == null)
-            throw new Exception ("Email não foi informado!");
+            throw new Exception ("Email nï¿½o foi informado!");
         else    
             this.email = email;
     }
@@ -28,8 +38,16 @@ public class Usuario {
 
     public void setSenha(String senha) throws Exception {
         if (senha == null)
-            throw new Exception ("Senha não foi informada!");
+            throw new Exception ("Senha nï¿½o foi informada!");
         else    
             this.senha = senha;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
