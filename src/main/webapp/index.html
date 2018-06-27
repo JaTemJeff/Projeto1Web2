@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Videos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <ul id="videosLista"></ul>
+        <button onclick="listarVideos()">buscar</button>
+        <script type="text/javascript" >
+            videos = [];
+            function listarVideos(){
+                var busca = "";
+                $.ajax({
+                    url: "videos",
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {"busca": busca},
+                    success: function(response) {
+                        for (var i = 0; i < response.length; i++){
+                            $("#videosLista").append("<li><video width=\"160\" height=\"120\" controls><source src=\"uploads/" + response[i].nome + ".mp4\" type=\"video/mp4\"></video></li>");
+                        }
+                    },
+                    error: function(xhr) {
+                        alert("Problemas para buscar videos");
+                    }
+                });
+            };
+        </script>
+    </body>
+</html>

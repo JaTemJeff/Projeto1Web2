@@ -31,6 +31,8 @@ public class VideoModel {
         } catch(Exception e){
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
             em.getTransaction().rollback();
+        } finally{
+            em.close();
         }
     }
     
@@ -38,10 +40,9 @@ public class VideoModel {
         EntityManager em = EntityManagerPool.getEntityManager();
 
         @SuppressWarnings("unchecked")
-        List<Video> lista = em.createQuery("SELECT * FROM Video WHERE nome like :busca")
+        List<Video> lista = em.createQuery("SELECT v FROM Video v WHERE v.nome like :busca")
             .setParameter("busca", parametro + "%")
             .getResultList();
-
         em.close();
         return lista;
     }

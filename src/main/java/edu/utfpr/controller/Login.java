@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/login")
-public class login extends HttpServlet {
+public class Login extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
         request.getRequestDispatcher("WEB-INF/view/login.jsp").include(request, response);
@@ -30,12 +30,12 @@ public class login extends HttpServlet {
         try {
             u.setEmail(request.getParameter("usuario"));
         } catch (Exception ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             u.setSenha(request.getParameter("senha"));
         } catch (Exception ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             uDAO.buscarUsuarioEmailSenha(u.getEmail(), u.getSenha());
