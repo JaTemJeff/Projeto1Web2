@@ -7,11 +7,9 @@ import javax.persistence.Persistence;
 
 public class EntityManagerPool {
     private static final String PERSISTENCE_UNIT = "jpaVideo";
-	private static ThreadLocal<EntityManager>
-	threadEntityManager = new ThreadLocal<EntityManager>();
-	private static EntityManagerFactory entityManagerFactory;
-	
-	
+    private static ThreadLocal<EntityManager> threadEntityManager = new ThreadLocal<EntityManager>();
+    private static EntityManagerFactory entityManagerFactory;
+
 	public static EntityManager getEntityManager() {
 		if (entityManagerFactory == null) {
 			entityManagerFactory =
