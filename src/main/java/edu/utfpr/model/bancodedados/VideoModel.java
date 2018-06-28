@@ -32,7 +32,7 @@ public class VideoModel {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
             em.getTransaction().rollback();
         } finally{
-            em.close();
+            EntityManagerPool.closeEntityManager();
         }
     }
     

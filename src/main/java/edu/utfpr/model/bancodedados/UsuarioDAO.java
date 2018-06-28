@@ -20,7 +20,8 @@ public class UsuarioDAO {
             try{
                 em.persist(u);
                 em.flush();
-                em.getTransaction().commit();
+                em.getTransaction().commit();        
+                EntityManagerPool.closeEntityManager();
             } catch(Exception e){
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
                 em.getTransaction().rollback();
@@ -47,6 +48,7 @@ public class UsuarioDAO {
         try{
             em.merge(u);
             em.getTransaction().commit();
+            EntityManagerPool.closeEntityManager();
         }catch(Exception e){
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
             em.getTransaction().rollback();
