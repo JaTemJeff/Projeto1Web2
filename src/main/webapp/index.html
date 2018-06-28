@@ -4,14 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    </head>
-    <body>
-        <form id="thisform" onkeypress="return event.keyCode != 13;">
-            <label for="buscar"></label>
-            <input type="text" id="buscar" name="buscar" value=""/>
-            <input type="button" value="Buscar" id="btBuscar"/>
-        </form>
-        <ul id="videosLista"></ul>
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#btBuscar').click(function(evt){
@@ -26,7 +18,7 @@
                         success: function(response) {
                             $("#videosLista").empty();
                             for (var i = 0; i < response.length; i++){
-                                $("#videosLista").append("<li><video width=\"160\" height=\"120\" controls><source src=\"uploads/" + response[i].nome + ".mp4\" type=\"video/mp4\"></video></li>");
+                                $("#videosLista").append("<li>"+ response[i].nome +"<video width=\"160\" height=\"120\" controls><source src=\"uploads/" + response[i].nome + ".mp4\" type=\"video/mp4\"></video></li>");
                             }
                             console.log(busca);
                         },
@@ -35,7 +27,37 @@
                         }
                     });
                 });
+                $('#btInserir').click(function(evt){
+                    evt.preventDefault()
+                    var nomeVideo = $("#nome");
+                    console.log($("#nome").val());
+                    $.ajax({
+                        url: "videos",
+                        type: 'POST',
+                        data: nomeVideo,
+                        success: function(response) {
+                        },
+                        error: function(xhr) {
+                            alert("Problemas para inserir videos");
+                        }
+                    });
+                });
             });
         </script>
+    </head>
+    <body>
+        <form id="thisform" onkeypress="return event.keyCode != 13;">
+            <label for="buscar"></label>
+            <input type="text" id="buscar" name="buscar" value=""/>
+            <input type="button" value="Buscar" id="btBuscar"/>
+        </form>
+        <ul id="videosLista"></ul>
+
+        <form id="postform" enctype="multipart/form-data">
+            <label for="inserir"></label>
+            <input name="nome" id="nome" type="text"/>
+            <input type="button" value="Inserir" id="btInserir"/>
+        </form>
+        <div id="result"></div>
     </body>
 </html>

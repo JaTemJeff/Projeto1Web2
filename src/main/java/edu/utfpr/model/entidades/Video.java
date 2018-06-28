@@ -1,6 +1,7 @@
 package edu.utfpr.model.entidades;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +15,7 @@ public class Video implements Serializable {
     @Id @GeneratedValue
     private int id;
     
-    @NotNull(message = "Nome não pode ser nulo")
+    @NotNull(message = "Nome não pode ser nulo") @Column (unique = true)
     private String nome;
 
     public Video() {
