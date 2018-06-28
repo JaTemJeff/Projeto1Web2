@@ -6,27 +6,36 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     </head>
     <body>
+        <form id="thisform" onkeypress="return event.keyCode != 13;">
+            <label for="buscar"></label>
+            <input type="text" id="buscar" name="buscar" value=""/>
+            <input type="button" value="Buscar" id="btBuscar"/>
+        </form>
         <ul id="videosLista"></ul>
-        <button onclick="listarVideos()">buscar</button>
-        <script type="text/javascript" >
-            videos = [];
-            function listarVideos(){
-                var busca = "";
-                $.ajax({
-                    url: "videos",
-                    type: 'GET',
-                    dataType: 'json',
-                    data: {"busca": busca},
-                    success: function(response) {
-                        for (var i = 0; i < response.length; i++){
-                            $("#videosLista").append("<li><video width=\"160\" height=\"120\" controls><source src=\"uploads/" + response[i].nome + ".mp4\" type=\"video/mp4\"></video></li>");
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#btBuscar').click(function(evt){
+                    evt.preventDefault()
+                    var busca = $("#buscar").val();
+                    console.log(busca);
+                    $.ajax({
+                        url: "videos",
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {"busca": busca},
+                        success: function(response) {
+                            $("#videosLista").empty();
+                            for (var i = 0; i < response.length; i++){
+                                $("#videosLista").append("<li><video width=\"160\" height=\"120\" controls><source src=\"uploads/" + response[i].nome + ".mp4\" type=\"video/mp4\"></video></li>");
+                            }
+                            console.log(busca);
+                        },
+                        error: function(xhr) {
+                            alert("Problemas para buscar videos");
                         }
-                    },
-                    error: function(xhr) {
-                        alert("Problemas para buscar videos");
-                    }
+                    });
                 });
-            };
+            });
         </script>
     </body>
 </html>

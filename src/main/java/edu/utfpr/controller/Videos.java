@@ -30,13 +30,11 @@ public class Videos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("opcoes").equals("inserir")) {
-            try {
-                VideoModel model = new VideoModel();
-                model.salvarVideo(request.getParameter("nome"));
-            } catch (PSQLException ex) {
-                Logger.getLogger(Videos.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        try {
+            VideoModel model = new VideoModel();
+            model.salvarVideo(request.getParameter("nome"));
+        } catch (PSQLException ex) {
+            Logger.getLogger(Videos.class.getName()).log(Level.SEVERE, null, ex);
+        }        
     }
 }
