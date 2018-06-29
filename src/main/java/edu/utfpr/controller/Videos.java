@@ -21,22 +21,30 @@ public class Videos extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
     
-    MemcachedClient client;
-
-    public Videos() throws IOException {
-        this.client = new MemcachedClient(AddrUtil.getAddresses("localhost:8080"));
-    }
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        MemcachedClient client = new MemcachedClient(AddrUtil.getAddresses("127.0.0.1:11211"));
         VideoModel model = new VideoModel();
-        List<Video> lista = model.listar(request.getParameter("busca"));
-        response.setContentType("application/json");
-        response.getWriter().print((new Gson()).toJson(lista));
-        client.add(request.getParameter("busca"), 120, new Gson().toJson(lista));
-        client.get(request.getParameter("busca"));
-        System.out.println(client.get(request.getParameter("busca")));
+        if (request.getParameter("busca").equals("")){
+            if (client.get("?") == null){
+                List<Video> lista = model.listar(request.getParameter("busca"));
+                response.setContentType("application/json");
+                response.getWriter().print(new Gson().toJson(lista));
+                client.add("?", 120, new Gson().toJson(lista));
+            } else {
+               response.getWriter().print(client.get("?"));
+            }
+        } else {
+            if(client.get(request.getParameter("busca")) == null){
+                List<Video> lista = model.listar(request.getParameter("busca"));
+                response.setContentType("application/json");
+                response.getWriter().print(new Gson().toJson(lista));
+                client.set(request.getParameter("busca"), 120, new Gson().toJson(lista));
+            } else {
+                response.getWriter().print(client.get(request.getParameter("busca")));
+            }
+        }
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -44,6 +52,8 @@ public class Videos extends HttpServlet {
         try {
             VideoModel model = new VideoModel();
             model.salvarVideo(request.getParameter("nome"));
+            MemcachedClient client = new MemcachedClient(AddrUtil.getAddresses("127.0.0.1:11211"));
+            client.flush();
         } catch (PSQLException ex) {
             Logger.getLogger(Videos.class.getName()).log(Level.SEVERE, null, ex);
         }        
