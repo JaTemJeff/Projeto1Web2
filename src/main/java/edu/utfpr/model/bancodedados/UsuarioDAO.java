@@ -20,7 +20,8 @@ public class UsuarioDAO {
             try{
                 em.persist(u);
                 em.flush();
-                em.getTransaction().commit();
+                em.getTransaction().commit();        
+                EntityManagerPool.closeEntityManager();
             } catch(Exception e){
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
                 em.getTransaction().rollback();
@@ -47,6 +48,7 @@ public class UsuarioDAO {
         try{
             em.merge(u);
             em.getTransaction().commit();
+            EntityManagerPool.closeEntityManager();
         }catch(Exception e){
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
             em.getTransaction().rollback();
@@ -57,13 +59,18 @@ public class UsuarioDAO {
         Usuario usuario = new Usuario();
         em.getTransaction().begin();
         try{
-            usuario = (Usuario) em.createQuery("SELECT u FROM Usuario u").getSingleResult();
+            usuario = (Usuario) em.createQuery(
+                    "SELECT u FROM Usuario u WHERE email like :email AND senha LIKE :senha")
+                    .setParameter("email", email + "%")
+                    .setParameter("senha", senha + "%")
+                    .getSingleResult();
+            
         } catch(Exception e){
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
             em.getTransaction().rollback();
         }
         if(usuario.getEmail() == null){
-            throw new Exception("usuario nï¿½o encontrado");
+            throw new Exception("usuario não encontrado");
         } else {
             return usuario;
         }

@@ -17,51 +17,32 @@ import org.postgresql.util.PSQLException;
 
 public class VideoModel {
     
-    private ConexaoBD bd;
-    private Connection con;
-    
     public VideoModel(){
     }
     
     public void salvarVideo(String nome) throws PSQLException{
-        String sql = "insert into Video (titulo) values (?);";
-        try {
-            PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, nome);
-            st.execute();
-            con.close();
-        }catch (PSQLException e) {
-            throw e;
+        Video v = new Video(nome);
+        EntityManager em = EntityManagerPool.getEntityManager();
+        em.getTransaction().begin();
+        try{
+            em.persist(v);
+            em.flush();
+            em.getTransaction().commit();
+        } catch(Exception e){
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            em.getTransaction().rollback();
+        } finally{
+            EntityManagerPool.closeEntityManager();
         }
-        catch (SQLException e) {
-            Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-    
-    public boolean buscarVideo(String nome){
-        String sql = "SELECT * FROM Video WHERE titulo LIKE '" + nome + "';";
-        try {
-            PreparedStatement st = con.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            con.close();
-            if (rs.next())
-                return true;
-            else
-                return false;
-        } catch (SQLException ex) {
-            Logger.getLogger(ConexaoBD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
     }
     
     public List<Video> listar(String parametro) {
         EntityManager em = EntityManagerPool.getEntityManager();
 
         @SuppressWarnings("unchecked")
-        List<Video> lista = em.createQuery("SELECT * FROM Video WHERE nome like :busca")
+        List<Video> lista = em.createQuery("SELECT v FROM Video v WHERE v.nome like :busca")
             .setParameter("busca", parametro + "%")
             .getResultList();
-
         em.close();
         return lista;
     }

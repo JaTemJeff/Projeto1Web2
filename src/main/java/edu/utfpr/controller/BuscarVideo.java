@@ -1,6 +1,5 @@
 package edu.utfpr.controller;
 
-import edu.utfpr.model.bancodedados.ConexaoBD;
 import edu.utfpr.model.bancodedados.VideoModel;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +30,7 @@ public class BuscarVideo extends HttpServlet {
         VideoModel bd = new VideoModel();
         ResourceBundle bundle = (ResourceBundle) request.getAttribute("bundle");
         
-        boolean salvo = bd.buscarVideo(nome_video);
+        /*boolean salvo = bd.buscarVideo(nome_video);
         if(salvo){
             response.sendRedirect("buscarvideo?nome=" + nome_video);
         } else {
@@ -39,6 +38,7 @@ public class BuscarVideo extends HttpServlet {
             request.setAttribute("naoencontrado", bundle.getString("mensagem_inexistente"));
             request.getRequestDispatcher("WEB-INF/view/buscarvideo.jsp").include(request, response);
         }
+        */
     }
 
 
