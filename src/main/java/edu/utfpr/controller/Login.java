@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
             request.getSession().setAttribute("logado", new Boolean(true));
             request.getSession().setAttribute("usuario", u.getEmail());
 
-            response.sendRedirect("");
+            response.sendRedirect("index");
         } catch (Exception ex) {
             response.sendRedirect("login");            
         }

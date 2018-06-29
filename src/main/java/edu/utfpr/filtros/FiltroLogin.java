@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/listarvideo", "/buscarvideo", "/uploadvideo", "/"})
+@WebFilter(urlPatterns = {"/listarvideo", "/buscarvideo", "/uploadvideo", "/index", "/"})
 public class FiltroLogin implements Filter {
     
     @Override
